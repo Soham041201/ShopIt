@@ -1,5 +1,7 @@
-import 'package:flutter/material.dart';
 
+// PLEASE DONT TOUCH THIS FILE TO MAKE THE CHANGES
+
+import 'package:flutter/material.dart';
 import 'home/home.dart';
 
 void main() {
