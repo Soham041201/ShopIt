@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         home: Scaffold(
       appBar: AppBar(
-        title: Text('ShopIt'),backgroundColor: Colors.black,
+        title: Text('Shop It'),backgroundColor: Colors.black,
       ),
     ));
   }
