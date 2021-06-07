@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:shop_it/Authentication-Soham/startPage.dart';
 
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('ShopIt'),
+        title: Center(child: Text('ShopIt')),
       ),
+      body: StartPage(),
     );
   }
 }

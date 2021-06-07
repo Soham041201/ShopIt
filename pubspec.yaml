@@ -15,6 +15,11 @@ dependencies:
 
   
   cupertino_icons: ^1.0.2
+  firebase: ^9.0.1
+  google_fonts: ^2.1.0
+  firebase_core: ^1.2.1
+  firebase_auth: ^1.3.0
+  provider: ^5.0.0
 
 dev_dependencies:
   flutter_test:
@@ -46,5 +51,4 @@ flutter:
     - family: Pacific
       fonts:
         - asset: fonts/
-    
 #copy the same pattern followed above to change the font. "THIS FILE IS INDENTATION SPECIFIC" 
