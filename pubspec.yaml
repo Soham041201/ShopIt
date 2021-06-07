@@ -47,8 +47,8 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  fonts:
-    - family: Pacific
-      fonts:
-        - asset: fonts/
+  # fonts:
+  #   - family: Pacific
+  #     fonts:
+  #       - asset: fonts/
 #copy the same pattern followed above to change the font. "THIS FILE IS INDENTATION SPECIFIC" 
