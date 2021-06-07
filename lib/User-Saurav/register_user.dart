@@ -15,6 +15,7 @@ class _RegisterUserState extends State<RegisterUser> {
   String email = '';
   String password = '';
   final _auth = FirebaseAuth.instance;
+  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -35,7 +36,9 @@ class _RegisterUserState extends State<RegisterUser> {
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: TextField(
+                
                 obscureText: true,
+                
                 textAlign: TextAlign.center,
                 style: TextStyle(),
                   decoration: InputDecoration(hintText: 'Password'),
@@ -49,12 +52,14 @@ class _RegisterUserState extends State<RegisterUser> {
               onPressed: () async {
                 _auth.createUserWithEmailAndPassword(
                     email: email, password: password);
+                   
                 Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => UserHome(),
                   ),
-                );
+                    );
+              
               },
               child: Text('Register'),
             ),
