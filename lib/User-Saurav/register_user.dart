@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_it/User-Saurav/UserHome.dart';
+import 'package:shop_it/User-Saurav/login_user.dart';
 
 class RegisterUser extends StatefulWidget {
   const RegisterUser({Key? key}) : super(key: key);
@@ -57,6 +57,22 @@ class _RegisterUserState extends State<RegisterUser> {
                 );
               },
               child: Text('Register'),
+            ),
+          SizedBox(height: 20,),
+
+
+            CupertinoButton(
+              
+              color: Colors.blue,
+              onPressed: () async {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => LoginUser(),
+                  ),
+                );
+              },
+              child: Text('Login'),
             )
           ],
         ),
