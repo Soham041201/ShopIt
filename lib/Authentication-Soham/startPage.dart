@@ -40,7 +40,7 @@ class StartPage extends StatelessWidget {
             ),
             CupertinoButton(
               child: Text(
-                'BUYER',
+                'BUYERS',
                 style: TextStyle(color: Colors.blue),
               ),
               onPressed: () {

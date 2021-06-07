@@ -12,8 +12,8 @@ class UserHome extends StatefulWidget {
 class _UserHomeState extends State<UserHome> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      
+    return Scaffold(
+      body: Center(child: Text('User Home Page',textScaleFactor: 2,)),
     );
   }
 }

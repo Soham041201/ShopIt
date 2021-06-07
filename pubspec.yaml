@@ -50,7 +50,11 @@ flutter:
   # fonts:
   #   - family: Pacific
   #     fonts:
+<<<<<<< HEAD
   #       - asset: fonfts/
+=======
+  #       - asset: fonts/
+>>>>>>> f3971dacb662fef2725ac0ad866851b28608f77f
 #copy the same pattern followed above to change the font. "THIS FILE IS INDENTATION SPECIFIC" 
 
 fonts:
