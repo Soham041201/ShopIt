@@ -48,12 +48,16 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   # fonts:
+<<<<<<< HEAD
   #   - family: Pacific
   #     fonts:
 
   #       - asset: fonfts/
 
   #       - asset: fonts/
+=======
+    
+>>>>>>> 29e056d54d5c56b3ec37cdd0f549b0e89bd824a8
 
 #copy the same pattern followed above to change the font. "THIS FILE IS INDENTATION SPECIFIC" 
 
@@ -61,3 +65,6 @@ fonts:
   - family: Pacific
     fonts:
       - asset: fonfits/
+  - family: SourceSansPro
+    fonts:
+      - asset: fonts/
