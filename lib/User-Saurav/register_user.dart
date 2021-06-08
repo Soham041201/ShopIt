@@ -15,71 +15,69 @@ class _RegisterUserState extends State<RegisterUser> {
   String email = '';
   String password = '';
   final _auth = FirebaseAuth.instance;
-  
+  final _fromKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        body: Column(
-          
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: TextField(
-                textAlign: TextAlign.center,
+        body: Form(
+          key: _fromKey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextFormField(
+                  style: TextStyle(
+                          fontSize: 20.0, fontWeight: FontWeight.w500) ,
                   decoration: InputDecoration(hintText: 'Email'),
-                  onChanged: (val) {
-                    email = val;
-                  }),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: TextField(
-                
-                obscureText: true,
-                
-                textAlign: TextAlign.center,
-                style: TextStyle(),
+                  validator: (val) => val!.isEmpty ? 'Enter your Email':null ,
+                  onChanged: (val){
+                    setState(()=>email=val);
+                  },
+                ),
+             TextFormField(
+                  style: TextStyle(
+                          fontSize: 20.0, fontWeight: FontWeight.w500) ,
                   decoration: InputDecoration(hintText: 'Password'),
-                  onChanged: (val) {
-                    password = val;
-                  }),
-            ),
-            CupertinoButton(
-              
-              color: Colors.blue,
-              onPressed: () async {
-                _auth.createUserWithEmailAndPassword(
-                    email: email, password: password);
-                   
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => UserHome(),
-                  ),
-                    );
-              
-              },
-              child: Text('Register'),
-            ),
-          SizedBox(height: 20,),
-
-
-            CupertinoButton(
-              
-              color: Colors.blue,
-              onPressed: () async {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => LoginUser(),
-                  ),
-                );
-              },
-              child: Text('Login'),
-            )
-          ],
+                  validator: (val) => val!.isEmpty ? 'Enter your Password':null ,
+                  onChanged: (val){
+                    setState(()=>password=val);
+                  },
+                ),
+              CupertinoButton(
+                
+                color: Colors.blue,
+                onPressed: () async {
+                  _auth.createUserWithEmailAndPassword(
+                      email: email, password: password);
+                     
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => UserHome(),
+                    ),
+                      );
+                
+                },
+                child: Text('Register'),
+              ),
+            SizedBox(height: 20,),
+        
+        
+              CupertinoButton(
+                
+                color: Colors.blue,
+                onPressed: () async {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => LoginUser(),
+                    ),
+                  );
+                },
+                child: Text('Login'),
+              )
+            ],
+          ),
         ),
       ),
     );
