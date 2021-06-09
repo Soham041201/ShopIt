@@ -3,10 +3,13 @@
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'home/home.dart';
+
 
 void main() async {
     WidgetsFlutterBinding.ensureInitialized();
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitDown,DeviceOrientation.portraitUp]);
     await Firebase.initializeApp();
     runApp(MyApp(),);
 }
@@ -15,6 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+    
       theme: ThemeData(
         textTheme: TextTheme(headline1: TextStyle(fontFamily:'SourceSansPro',fontWeight: FontWeight.bold),bodyText2:TextStyle(fontFamily:'SourceSansPro',fontWeight: FontWeight.w300),),
         brightness: Brightness.dark,

@@ -1,8 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shop_it/Authentication-Soham/loading.dart';
 import 'package:shop_it/User-Saurav/UserHome.dart';
-import 'package:shop_it/User-Saurav/login_user.dart';
+
 import 'package:shop_it/User-Saurav/register_user.dart';
 
 class LoginUser extends StatefulWidget {
@@ -13,14 +14,16 @@ class LoginUser extends StatefulWidget {
 }
 
 class _RegisterUserState extends State<LoginUser> {
+  bool loading = false;
   String email = '';
   String password = '';
+  String error='';
   final _auth = FirebaseAuth.instance;
   final _fromKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
+      home: loading? Loading() :Scaffold(
         body: Container(
           padding: EdgeInsets.all(20),
           child: Form(
@@ -54,19 +57,33 @@ class _RegisterUserState extends State<LoginUser> {
                   
                   color: Colors.blue,
                   onPressed: () async {
-                   
+                   try{
+                     setState(()=> loading=true);
                     _auth.signInWithEmailAndPassword(email: email, password: password);
+                   }catch(e){}
                     if(FirebaseAuth.instance.currentUser != null){
+                    loading = true;
                     Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) => UserHome(),
                       ),
+                      
                         );
+                        loading=false;
+                    }
+                    else{
+                      setState(() {
+                        loading=false;
+                        error= 'Check your Email and Password';
+                      });
                     }
                   },
                   child: Text('Login'),
                 ),
+                SizedBox(height: 10,),
+                Text(error),
+                
               SizedBox(height: 20,),
           
           Text('Not Registerted?',style: TextStyle(fontFamily:'SourceSansPro',fontWeight: FontWeight.w400,fontSize:20)),

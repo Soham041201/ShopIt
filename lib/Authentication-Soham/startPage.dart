@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_it/Seller-Chinmayee/register_seller.dart';
-import 'package:shop_it/User-Saurav/register_user.dart';
+import 'package:shop_it/User-Saurav/wrapper_user.dart';
 
 class StartPage extends StatelessWidget {
   const StartPage({Key? key}) : super(key: key);
@@ -40,13 +40,13 @@ class StartPage extends StatelessWidget {
             ),
             CupertinoButton(
               child: Text(
-                'BUYERS',
+                'USER',
                 style: TextStyle(color: Colors.blue),
               ),
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => RegisterUser()),
+                  MaterialPageRoute(builder: (context) => WrapperUser()),
                 );
               },
               color: Colors.white,
