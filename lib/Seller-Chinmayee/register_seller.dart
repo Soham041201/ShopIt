@@ -1,26 +1,29 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shop_it/Authentication-Soham/loading.dart';
 import 'package:shop_it/Seller-Chinmayee/SellerHome.dart';
-import 'package:shop_it/User-Saurav/UserHome.dart';
-import 'package:shop_it/User-Saurav/login_user.dart';
+import 'package:shop_it/Seller-Chinmayee/login_seller.dart';
+import 'package:shop_it/Style/text_field_decoration.dart';
 
 class RegisterSeller extends StatefulWidget {
   const RegisterSeller({Key? key}) : super(key: key);
 
   @override
-  _RegisterUserState createState() => _RegisterUserState();
+  _RegisterSellerState createState() => _RegisterSellerState();
 }
 
-class _RegisterUserState extends State<RegisterSeller> {
+class _RegisterSellerState extends State<RegisterSeller> {
+  bool loading = false;
   String email = '';
   String password = '';
+  String error='';
   final _auth = FirebaseAuth.instance;
   final _fromKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
+      home: loading? Loading() :Scaffold(
         body: Container(
           padding: EdgeInsets.all(20),
           child: Form(
@@ -28,50 +31,68 @@ class _RegisterUserState extends State<RegisterSeller> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Text('REGISTER SELLER PAGE',textScaleFactor: 2,),
                 TextFormField(
                   textAlign: TextAlign.center,
                     style: TextStyle(
                             fontSize: 20.0, fontWeight: FontWeight.w300) ,
-                    decoration: InputDecoration(hintText: 'Email'),
+                  
                     validator: (val) => val!.isEmpty ? 'Enter your Email':null ,
                     onChanged: (val){
                       setState(()=>email=val);
                     },
+                     decoration: textFieldDecoration('Email')
                   ),
                         SizedBox(height: 20,),
                TextFormField(
                  textAlign: TextAlign.center,
                     style: TextStyle(
                             fontSize: 20.0, fontWeight: FontWeight.w300) ,
-                    decoration: InputDecoration(hintText: 'Password'),
-                    validator: (val) => val!.isEmpty ? 'Enter your Password':null ,
+                   
+                    validator: (val) => val!.isEmpty  ? 'Enter your Password':null ,
                     onChanged: (val){
                       setState(()=>password=val);
                     },
+                     decoration: textFieldDecoration('Password'),
                   ),
                   SizedBox(height: 20,),
                 CupertinoButton(
                   
                   color: Colors.blue,
                   onPressed: () async {
-                    _auth.createUserWithEmailAndPassword(
-                        email: email, password: password);
-                       
-                    if(_auth.currentUser !=null){
+                    if(_fromKey.currentState!.validate()){
+                      setState(() {
+                    loading=true;    
+                      });
+                    
+                   dynamic result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
+                   if(result!=null){
                     Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) => SellerHome(),
                       ),
+                      
                         );
+                    }}  
+                    
+                    else{
+                      setState(() {
+                        
+                        error= 'Check your Email and Password';
+                        loading=false;
+                      });
                     }
                   },
                   child: Text('Register'),
                 ),
+                SizedBox(height: 10,),
+                Text(error),
+                
               SizedBox(height: 20,),
           
-      Text('Already Registerted?',style: TextStyle(fontFamily:'SourceSansPro',fontWeight: FontWeight.w400,fontSize:20)),
-             SizedBox(height: 20,),
+          Text('Already Registered?',style: TextStyle(fontFamily:'SourceSansPro',fontWeight: FontWeight.w400,fontSize:20)),
+                SizedBox(height: 10,),
                 CupertinoButton(
                   
                   color: Colors.blue,
@@ -79,11 +100,10 @@ class _RegisterUserState extends State<RegisterSeller> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => LoginUser(),
+                        builder: (context) => LoginSeller(),
                       ),
                     );
                   },
-                  
                   child: Text('Login'),
                 )
               ],
@@ -93,4 +113,5 @@ class _RegisterUserState extends State<RegisterSeller> {
       ),
     );
   }
+
 }

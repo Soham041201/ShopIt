@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:shop_it/Seller-Chinmayee/SellerHome.dart';
 import 'package:shop_it/Seller-Chinmayee/register_seller.dart';
 
-import 'package:shop_it/User-Saurav/register_user.dart';
 
 
-class WrapperUser extends StatelessWidget {
-  const WrapperUser({ Key? key }) : super(key: key);
+
+class WrapperSeller extends StatelessWidget {
+  const WrapperSeller({ Key? key }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -1,25 +1,29 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shop_it/Authentication-Soham/loading.dart';
 import 'package:shop_it/Seller-Chinmayee/SellerHome.dart';
 import 'package:shop_it/Seller-Chinmayee/register_seller.dart';
+import 'package:shop_it/Style/text_field_decoration.dart';
 
 class LoginSeller extends StatefulWidget {
   const LoginSeller({Key? key}) : super(key: key);
 
   @override
-  _RegisterUserState createState() => _RegisterUserState();
+  _LoginSellerState createState() => _LoginSellerState();
 }
 
-class _RegisterUserState extends State<LoginSeller> {
+class _LoginSellerState extends State<LoginSeller> {
+  bool loading = false;
   String email = '';
   String password = '';
+  String error='';
   final _auth = FirebaseAuth.instance;
   final _fromKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
+      home: loading? Loading() :Scaffold(
         body: Container(
           padding: EdgeInsets.all(20),
           child: Form(
@@ -27,11 +31,12 @@ class _RegisterUserState extends State<LoginSeller> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Text('LOGIN SELLER PAGE',textScaleFactor: 2,),
                 TextFormField(
                   textAlign: TextAlign.center,
                     style: TextStyle(
                             fontSize: 20.0, fontWeight: FontWeight.w300) ,
-                    decoration: InputDecoration(hintText: 'Email'),
+                    decoration: textFieldDecoration('Email'),
                     validator: (val) => val!.isEmpty ? 'Enter your Email':null ,
                     onChanged: (val){
                       setState(()=>email=val);
@@ -39,11 +44,10 @@ class _RegisterUserState extends State<LoginSeller> {
                   ),
                         SizedBox(height: 20,),
                TextFormField(
-                 
                  textAlign: TextAlign.center,
                     style: TextStyle(
                             fontSize: 20.0, fontWeight: FontWeight.w300) ,
-                    decoration: InputDecoration(hintText: 'Password'),
+                    decoration: textFieldDecoration('Password'),
                     validator: (val) => val!.isEmpty ? 'Enter your Password':null ,
                     onChanged: (val){
                       setState(()=>password=val);
@@ -54,20 +58,36 @@ class _RegisterUserState extends State<LoginSeller> {
                   
                   color: Colors.blue,
                   onPressed: () async {
-                   try{
-                    _auth.signInWithEmailAndPassword(email: email, password: password);
-                   }catch(e){}
-                    if(FirebaseAuth.instance.currentUser != null){
+                    if(_fromKey.currentState!.validate()){
+                      setState(() {
+                    loading=true;    
+                      });
+                    
+                   dynamic result = await _auth.signInWithEmailAndPassword(email: email, password: password);
+                  
+                   if(result!=null){
                     Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) => SellerHome(),
                       ),
+                      
                         );
+                    }}  
+                    
+                    else{
+                      setState(() {
+                        
+                        error= 'Check your Email and Password';
+                        loading=false;
+                      });
                     }
                   },
                   child: Text('Login'),
                 ),
+                SizedBox(height: 10,),
+                Text(error),
+                
               SizedBox(height: 20,),
           
           Text('Not Registerted?',style: TextStyle(fontFamily:'SourceSansPro',fontWeight: FontWeight.w400,fontSize:20)),

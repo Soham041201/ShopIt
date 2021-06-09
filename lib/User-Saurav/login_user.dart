@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_it/Authentication-Soham/loading.dart';
+import 'package:shop_it/Style/text_field_decoration.dart';
 import 'package:shop_it/User-Saurav/UserHome.dart';
 
 import 'package:shop_it/User-Saurav/register_user.dart';
@@ -10,10 +11,10 @@ class LoginUser extends StatefulWidget {
   const LoginUser({Key? key}) : super(key: key);
 
   @override
-  _RegisterUserState createState() => _RegisterUserState();
+  _LoginUserState createState() => _LoginUserState();
 }
 
-class _RegisterUserState extends State<LoginUser> {
+class _LoginUserState extends State<LoginUser> {
   bool loading = false;
   String email = '';
   String password = '';
@@ -31,11 +32,12 @@ class _RegisterUserState extends State<LoginUser> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Text('LOGIN USER PAGE',textScaleFactor: 2,),
                 TextFormField(
                   textAlign: TextAlign.center,
                     style: TextStyle(
                             fontSize: 20.0, fontWeight: FontWeight.w300) ,
-                    decoration: InputDecoration(hintText: 'Email'),
+                    decoration: textFieldDecoration('Email'),
                     validator: (val) => val!.isEmpty ? 'Enter your Email':null ,
                     onChanged: (val){
                       setState(()=>email=val);
@@ -46,7 +48,7 @@ class _RegisterUserState extends State<LoginUser> {
                  textAlign: TextAlign.center,
                     style: TextStyle(
                             fontSize: 20.0, fontWeight: FontWeight.w300) ,
-                    decoration: InputDecoration(hintText: 'Password'),
+                    decoration: textFieldDecoration('Password'),
                     validator: (val) => val!.isEmpty ? 'Enter your Password':null ,
                     onChanged: (val){
                       setState(()=>password=val);
@@ -57,12 +59,14 @@ class _RegisterUserState extends State<LoginUser> {
                   
                   color: Colors.blue,
                   onPressed: () async {
-                   try{
-                     setState(()=> loading=true);
-                    _auth.signInWithEmailAndPassword(email: email, password: password);
-                   }catch(e){}
-                    if(FirebaseAuth.instance.currentUser != null){
-                    loading = true;
+                    if(_fromKey.currentState!.validate()){
+                      setState(() {
+                    loading=true;    
+                      });
+                    
+                   dynamic result = await _auth.signInWithEmailAndPassword(email: email, password: password);
+                  
+                   if(result!=null){
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -70,12 +74,13 @@ class _RegisterUserState extends State<LoginUser> {
                       ),
                       
                         );
-                        loading=false;
-                    }
+                    }}  
+                    
                     else{
                       setState(() {
-                        loading=false;
+                        
                         error= 'Check your Email and Password';
+                        loading=false;
                       });
                     }
                   },
