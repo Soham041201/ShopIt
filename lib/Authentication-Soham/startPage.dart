@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:shop_it/Seller-Chinmayee/register_seller.dart';
 import 'package:shop_it/Seller-Chinmayee/wrapper_seller.dart';
 import 'package:shop_it/User-Saurav/wrapper_user.dart';
 
