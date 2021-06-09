@@ -11,6 +11,7 @@ class StartPage extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
               height: 20,
@@ -20,7 +21,7 @@ class StartPage extends StatelessWidget {
               textScaleFactor: 2,
             ),
             SizedBox(
-              height: 250,
+              height: 20,
             ),
             CupertinoButton(
               child: Text(

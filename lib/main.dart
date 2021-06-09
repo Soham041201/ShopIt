@@ -23,6 +23,9 @@ class MyApp extends StatelessWidget {
         primaryColorDark: Colors.black,
         backgroundColor: Colors.black87,
             textTheme: TextTheme(
+              
+              headline5: TextStyle(
+                  fontFamily: 'SourceSansPro', fontWeight: FontWeight.bold),
               headline1: TextStyle(
                   fontFamily: 'SourceSansPro', fontWeight: FontWeight.bold),
               bodyText2: TextStyle(

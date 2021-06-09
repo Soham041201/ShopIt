@@ -3,12 +3,12 @@
 InputDecoration textFieldDecoration(String hintText) {
 
     return InputDecoration(
-              
-                hintText: hintText,
+                labelText: hintText,
+                labelStyle: TextStyle(color: Colors.blue,fontWeight: FontWeight.w100),
                 contentPadding:
-                    EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+                    EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(32.0)),
+                  borderRadius: BorderRadius.all(Radius.circular(30.0)),
                 ),
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.blueAccent, width: 1.0),
