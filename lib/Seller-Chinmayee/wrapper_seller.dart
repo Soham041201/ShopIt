@@ -13,7 +13,7 @@ class WrapperSeller extends StatelessWidget {
   Widget build(BuildContext context) {
     
     if(FirebaseAuth.instance.currentUser!=null){
-      return SellerHome();
+      return SellerHome(firstName: '',);
     }
    return RegisterSeller();
   }

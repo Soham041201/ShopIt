@@ -66,10 +66,11 @@ class _LoginSellerState extends State<LoginSeller> {
                    dynamic result = await _auth.signInWithEmailAndPassword(email: email, password: password);
                   
                    if(result!=null){
+                     
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => SellerHome(),
+                        builder: (context) => SellerHome(firstName: '',),
                       ),
                       
                         );

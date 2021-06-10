@@ -11,7 +11,7 @@ InputDecoration textFieldDecoration(String hintText) {
                   borderRadius: BorderRadius.all(Radius.circular(30.0)),
                 ),
                 enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.blueAccent, width: 1.0),
+                  borderSide: BorderSide(color: Colors.black, width: 1.0),
                   borderRadius: BorderRadius.all(Radius.circular(32.0)),
                 ),
                 focusedBorder: OutlineInputBorder(
