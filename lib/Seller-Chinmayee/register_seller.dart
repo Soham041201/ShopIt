@@ -86,13 +86,21 @@ class _RegisterSellerState extends State<RegisterSeller> {
                         SizedBox(
                           height: 5,
                         ),
+                        //Change Styling of Calrender from here
                         Container(
-                        child:
-                           Row(
-                             crossAxisAlignment: CrossAxisAlignment.center,
-                             children: [
-                               Text('ENTER YOUR DATE OF BIRTH',style: TextStyle(fontFamily: 'SourceSansPro',fontSize: 20,fontWeight: FontWeight.w200,color: Colors.blue,),),
-                               CupertinoButton(
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                'ENTER YOUR DATE OF BIRTH',
+                                style: TextStyle(
+                                  fontFamily: 'SourceSansPro',
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w200,
+                                  color: Colors.blue,
+                                ),
+                              ),
+                              CupertinoButton(
                                 onPressed: () {
                                   DatePicker.showDatePicker(
                                     context,
@@ -108,10 +116,9 @@ class _RegisterSellerState extends State<RegisterSeller> {
                                   );
                                 },
                                 child: Icon(Icons.calendar_today),
+                              ),
+                            ],
                           ),
-                          
-                             ],
-                           ),
                         ),
                         // TextFormField(
                         //   keyboardType: TextInputType.datetime,
