@@ -44,6 +44,7 @@ class _LoginSellerState extends State<LoginSeller> {
                   ),
                         SizedBox(height: 20,),
                TextFormField(
+                 
                  textAlign: TextAlign.center,
                     style: TextStyle(
                             fontSize: 20.0, fontWeight: FontWeight.w300) ,

@@ -23,7 +23,8 @@ class MyApp extends StatelessWidget {
         primaryColorDark: Colors.black,
         backgroundColor: Colors.black87,
             textTheme: TextTheme(
-              
+              button:  TextStyle(
+                  fontFamily: 'SourceSansPro', fontWeight: FontWeight.bold),
               headline5: TextStyle(
                   fontFamily: 'SourceSansPro', fontWeight: FontWeight.bold),
               headline1: TextStyle(
