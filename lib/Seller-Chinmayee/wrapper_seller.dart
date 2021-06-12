@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_it/Seller-Chinmayee/SellerHome.dart';
-import 'package:shop_it/Seller-Chinmayee/register_seller.dart';
+import 'package:shop_it/User-Saurav/login_user.dart';
 
 
 
@@ -15,6 +15,6 @@ class WrapperSeller extends StatelessWidget {
     if(FirebaseAuth.instance.currentUser!=null){
       return SellerHome(firstName: '',);
     }
-   return RegisterSeller();
+   return LoginUser();
   }
 }

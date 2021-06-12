@@ -15,7 +15,7 @@ class RegisterUser extends StatefulWidget {
 }
 
 class _RegisterUserState extends State<RegisterUser> {
-  GoogleSignIn _googleSignIn = GoogleSignIn();
+
   bool loading = false;
   String email = '';
   String password = '';
@@ -28,6 +28,7 @@ class _RegisterUserState extends State<RegisterUser> {
       home: loading
           ? Loading()
           : Scaffold(
+            backgroundColor: Colors.white,
               body: Container(
                 padding: EdgeInsets.all(20),
                 child: Form(
@@ -129,30 +130,9 @@ class _RegisterUserState extends State<RegisterUser> {
                       SizedBox(
                         height: 10,
                       ),
-                      CupertinoButton(
-                        color: Colors.blue,
-                        onPressed: () async {
-                          setState(() {
-                            loading = true;
-                          });
-                          GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
-                          GoogleSignInAuthentication googleAuth = await googleUser!.authentication;
-                          // final User user = _auth.
-                          loading=false;
-                          if (googleAuth.idToken != null) {
-                            setState(() {
-                              loading = false;
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => UserHome(),
-                                ),
-                              );
-                            });
-                          }
-                        },
-                        child: Text('Sign-in with Google'),
-                      )
+                      Text('OR'),
+                      SizedBox(height: 10,),
+                     
                     ],
                   ),
                 ),

@@ -19,18 +19,19 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+
         theme: ThemeData.dark().copyWith(
         primaryColorDark: Colors.black,
         backgroundColor: Colors.black87,
             textTheme: TextTheme(
               button:  TextStyle(
-                  fontFamily: 'SourceSansPro', fontWeight: FontWeight.bold),
+                  fontFamily: 'SourceSansPro', fontWeight: FontWeight.bold,color: Colors.white),
               headline5: TextStyle(
-                  fontFamily: 'SourceSansPro', fontWeight: FontWeight.bold),
+                  fontFamily: 'SourceSansPro', fontWeight: FontWeight.bold,color: Colors.white),
               headline1: TextStyle(
-                  fontFamily: 'SourceSansPro', fontWeight: FontWeight.bold),
+                  fontFamily: 'SourceSansPro', fontWeight: FontWeight.bold,color: Colors.white),
               bodyText2: TextStyle(
-                  fontFamily: 'SourceSansPro', fontWeight: FontWeight.w300),
+                  fontFamily: 'SourceSansPro', fontWeight: FontWeight.w300,color: Colors.white),
             ),
            
             primaryColor: Colors.black,
