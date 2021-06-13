@@ -1,23 +1,20 @@
- import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
 InputDecoration textFieldDecoration(String hintText) {
-
-    return InputDecoration(
-                labelText: hintText,
-                labelStyle: TextStyle(color: Colors.blue,fontWeight: FontWeight.w100),
-                contentPadding:
-                    EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(30.0)),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.black, width: 1.0),
-                  borderRadius: BorderRadius.all(Radius.circular(32.0)),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.purple, width: 2.0),
-                  borderRadius: BorderRadius.all(Radius.circular(32.0)),
-                ),
-              );
-  
+  return InputDecoration(
+    labelText: hintText,
+    labelStyle: TextStyle(color: Colors.blue, fontWeight: FontWeight.w100),
+    contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.all(Radius.circular(30.0)),
+    ),
+    enabledBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: Colors.white, width: 1.0),
+      borderRadius: BorderRadius.all(Radius.circular(32.0)),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: Colors.purple, width: 2.0),
+      borderRadius: BorderRadius.all(Radius.circular(32.0)),
+    ),
+  );
 }

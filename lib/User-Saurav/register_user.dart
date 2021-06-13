@@ -15,7 +15,6 @@ class RegisterUser extends StatefulWidget {
 }
 
 class _RegisterUserState extends State<RegisterUser> {
-
   bool loading = false;
   String email = '';
   String password = '';
@@ -28,7 +27,7 @@ class _RegisterUserState extends State<RegisterUser> {
       home: loading
           ? Loading()
           : Scaffold(
-            backgroundColor: Colors.white,
+              backgroundColor: Colors.white,
               body: Container(
                 padding: EdgeInsets.all(20),
                 child: Form(
@@ -127,12 +126,6 @@ class _RegisterUserState extends State<RegisterUser> {
                         },
                         child: Text('Login'),
                       ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text('OR'),
-                      SizedBox(height: 10,),
-                     
                     ],
                   ),
                 ),

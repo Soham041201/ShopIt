@@ -42,6 +42,7 @@ class _LoginUserState extends State<LoginUser> {
                         textScaleFactor: 2,
                         style: TextStyle(color: Colors.white),
                       ),
+                      SizedBox(height: 10),
                       TextFormField(
                         textAlign: TextAlign.center,
                         style: TextStyle(
