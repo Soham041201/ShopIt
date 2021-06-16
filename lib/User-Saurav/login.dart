@@ -3,19 +3,18 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shop_it/Authentication-Soham/loading.dart';
+import 'package:shop_it/Seller-Chinmayee/register.dart';
 import 'package:shop_it/Style/text_field_decoration.dart';
 import 'package:shop_it/User-Saurav/UserHome.dart';
 
-import 'package:shop_it/User-Saurav/register_user.dart';
-
-class LoginUser extends StatefulWidget {
-  const LoginUser({Key? key}) : super(key: key);
+class Login extends StatefulWidget {
+  const Login({Key? key}) : super(key: key);
 
   @override
   _LoginUserState createState() => _LoginUserState();
 }
 
-class _LoginUserState extends State<LoginUser> {
+class _LoginUserState extends State<Login> {
   GoogleSignIn _googleSignIn = GoogleSignIn();
   bool loading = false;
   String email = '';
@@ -38,7 +37,7 @@ class _LoginUserState extends State<LoginUser> {
                     child: Column(
                       children: [
                         SizedBox(height: 40),
-                        titleTextstyle('LOGIN AS USER'),
+                        titleTextstyle('LOGIN'),
                         SizedBox(height: 150),
                         Text(
                           error,
@@ -115,37 +114,41 @@ class _LoginUserState extends State<LoginUser> {
                         SizedBox(
                           height: 10,
                         ),
-                        IconButton(
-                          focusColor: Colors.white,
-                          disabledColor: Colors.white,
-                          splashColor: Colors.white,
-                          padding: EdgeInsets.symmetric(horizontal: 60),
-                          color: Colors.white,
-                          onPressed: () async {
-                            setState(() {
-                              loading = true;
-                            });
-                            GoogleSignInAccount? googleUser =
-                                await _googleSignIn.signIn();
-                            GoogleSignInAuthentication googleAuth =
-                                await googleUser!.authentication;
-                            // final User user = _auth.
-                            loading = false;
-                            if (googleAuth.idToken != null) {
+                        Container(
+                          width: 50.0,
+                          height: 50.0,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            shape: BoxShape.circle,
+                          ),
+                          child: IconButton(
+                            padding: EdgeInsets.symmetric(horizontal: 10),
+                            onPressed: () async {
                               setState(() {
-                                loading = false;
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => UserHome(),
-                                  ),
-                                );
+                                loading = true;
                               });
-                            }
-                          },
-                          icon: Image(
-                            image: NetworkImage(
-                              'https://raw.githubusercontent.com/sbis04/flutterfire-samples/google-sign-in/assets/google_logo.png',
+                              GoogleSignInAccount? googleUser =
+                                  await _googleSignIn.signIn();
+                              GoogleSignInAuthentication googleAuth =
+                                  await googleUser!.authentication;
+                              // final User user = _auth.
+                              loading = false;
+                              if (googleAuth.idToken != null) {
+                                setState(() {
+                                  loading = false;
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => UserHome(),
+                                    ),
+                                  );
+                                });
+                              }
+                            },
+                            icon: Image(
+                              image: NetworkImage(
+                                'https://raw.githubusercontent.com/sbis04/flutterfire-samples/google-sign-in/assets/google_logo.png',
+                              ),
                             ),
                           ),
                         ),
@@ -166,7 +169,7 @@ class _LoginUserState extends State<LoginUser> {
                           onTap: () => Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => RegisterUser(),
+                              builder: (context) => Register(),
                             ),
                           ),
                         ),

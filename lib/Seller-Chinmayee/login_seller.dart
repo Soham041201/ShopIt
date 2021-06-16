@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_it/Authentication-Soham/loading.dart';
 import 'package:shop_it/Seller-Chinmayee/SellerHome.dart';
-import 'package:shop_it/Seller-Chinmayee/register_seller.dart';
+import 'package:shop_it/Seller-Chinmayee/register.dart';
 import 'package:shop_it/Style/text_field_decoration.dart';
 
 class LoginSeller extends StatefulWidget {
@@ -123,7 +123,7 @@ class _LoginSellerState extends State<LoginSeller> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => RegisterSeller(),
+                              builder: (context) => Register(),
                             ),
                           );
                         },

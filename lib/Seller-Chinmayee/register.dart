@@ -1,21 +1,40 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:shop_it/Authentication-Soham/loading.dart';
 import 'package:shop_it/Seller-Chinmayee/SellerHome.dart';
-import 'package:shop_it/Seller-Chinmayee/login_seller.dart';
 import 'package:shop_it/Style/text_field_decoration.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:shop_it/User-Saurav/login_user.dart';
+import 'package:shop_it/User-Saurav/UserHome.dart';
+import 'package:shop_it/User-Saurav/login.dart';
 
-class RegisterSeller extends StatefulWidget {
-  const RegisterSeller({Key? key}) : super(key: key);
+class Register extends StatefulWidget {
+  const Register({Key? key}) : super(key: key);
 
   @override
   _RegisterSellerState createState() => _RegisterSellerState();
 }
 
-class _RegisterSellerState extends State<RegisterSeller> {
+class _RegisterSellerState extends State<Register> {
+  String theirGroupValue = 'Buyer';
+
+  final Map<String, Widget> logoWidgets = <String, Widget>{
+    'Buyer': Text(
+      "Buyer",
+      style: GoogleFonts.montserrat(
+          fontSize: 20,
+          fontWeight: FontWeight.normal,
+          color: Colors.blue.shade700),
+    ),
+    'Seller': Text(
+      "Seller",
+      style: GoogleFonts.montserrat(
+          fontSize: 20,
+          fontWeight: FontWeight.normal,
+          color: Colors.blue.shade700),
+    ),
+  };
   bool loading = false;
   String email = '';
   String password = '';
@@ -29,6 +48,22 @@ class _RegisterSellerState extends State<RegisterSeller> {
   final _auth = FirebaseAuth.instance;
   final _fromKey = GlobalKey<FormState>();
   final _firestore = FirebaseFirestore.instance;
+  final Stream<QuerySnapshot> _usersStream =
+      FirebaseFirestore.instance.collection('users').snapshots();
+  // ignore: unused_element
+  static Widget giveCenter(String yourText) {
+    return Center(
+      child: Text(
+        "Text: $yourText",
+        style: TextStyle(color: Colors.blue, fontSize: 20.0),
+      ),
+    );
+  }
+
+  List<Widget> bodies = [
+    Text("Seller"),
+    Text("Buyer"),
+  ];
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -44,9 +79,9 @@ class _RegisterSellerState extends State<RegisterSeller> {
                     child: Column(
                       children: [
                         SizedBox(
-                          height: 20,
+                          height: 50,
                         ),
-                        titleTextstyle('Register Seller Page'),
+                        titleTextstyle('Register'),
                         SizedBox(
                           height: 65,
                         ),
@@ -104,7 +139,7 @@ class _RegisterSellerState extends State<RegisterSeller> {
                               ? 'Enter your Mobile Number'
                               : null,
                           onChanged: (val) {
-                            setState(() => lastName = val);
+                            setState(() => mobileNumber = val);
                           },
                           decoration: textFieldDecoration('Mobile Number'),
                         ),
@@ -119,7 +154,7 @@ class _RegisterSellerState extends State<RegisterSeller> {
                             validator: (val) =>
                                 val!.isEmpty ? 'Enter your Email' : null,
                             onChanged: (val) {
-                              setState(() => mobileNumber = val);
+                              setState(() => email = val);
                             },
                             decoration: textFieldDecoration('Email')),
                         SizedBox(
@@ -140,10 +175,20 @@ class _RegisterSellerState extends State<RegisterSeller> {
                         SizedBox(
                           height: 10,
                         ),
-                        // CupertinoSlidingSegmentedControl(
-                        //     children:List[Seller,Buyer], onValueChanged:(val){
 
-                        //     }),
+                        CupertinoSlidingSegmentedControl(
+                          padding: EdgeInsets.symmetric(),
+                          groupValue: theirGroupValue,
+                          onValueChanged: (changeFromGroupValue) {
+                            setState(() {
+                              theirGroupValue = changeFromGroupValue.toString();
+                            });
+                          },
+                          children: logoWidgets,
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
                         Container(
                           width: 200,
                           child: CupertinoButton(
@@ -159,39 +204,56 @@ class _RegisterSellerState extends State<RegisterSeller> {
                                       .createUserWithEmailAndPassword(
                                           email: email, password: password);
                                   if (result != null) {
-                                    await _firestore
-                                        .collection('Registered Sellers')
-                                        .add(
+                                    await _firestore.collection('Users').add(
                                       {
                                         'name': firstName,
                                         'lastName': lastName,
                                         'dateOfbirth': dob,
                                         'email': _auth.currentUser!.email,
                                         'mobileNumber': mobileNumber,
+                                        'type': theirGroupValue
                                       },
                                     );
-                                    await _firestore.collection('Seller').add({
-                                      "Name": firstName,
-                                      "device no": '',
-                                      "Seller": seller,
-                                      "Uid": _auth.currentUser!.uid,
-                                      "Role": "user"
-                                    });
-                                    try {
-                                      await _auth.currentUser!
-                                          .sendEmailVerification();
-                                    } catch (e) {
-                                      print(e);
-                                    }
 
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => SellerHome(
-                                          firstName: firstName,
-                                        ),
-                                      ),
-                                    );
+                                    // var firebaseUser =
+                                    //     FirebaseAuth.instance.currentUser;
+                                    // FirebaseFirestore.instance
+                                    //     .collection("Users")
+                                    //     .doc(firebaseUser!.uid)
+                                    //     .get()
+                                    //     .then((value) {
+                                    //   print(value.data()!["name"]);
+                                    // });
+                                    // StreamBuilder<QuerySnapshot>(
+                                    //     stream: _usersStream,
+                                    //     builder: (BuildContext context,
+                                    //         AsyncSnapshot<QuerySnapshot>
+                                    //             snapshot) {
+                                    //       if (snapshot.hasError) {
+                                    //         return Text("Something went wrong");
+                                    //       }
+
+                                    //       if (snapshot.connectionState ==
+                                    //           ConnectionState.done) {
+                                    //         snapshot.data!.docs.map(
+                                    //             (DocumentSnapshot document) {
+                                    //           Map<String, dynamic> data =
+                                    //               document.data()
+                                    //                   as Map<String, dynamic>;
+                                    //           print(data);
+                                    //           if (data['type'] == 'Buyer') {
+                                    //             return UserHome();
+                                    //           } else if (data['type'] ==
+                                    //               'Seller') {
+                                    //             return SellerHome(
+                                    //                 firstName: data['name']);
+                                    //           }
+                                    //           print(data['name']);
+                                    //         });
+                                    //       }
+                                    //       return Register();
+                                    //     });
+                                    print('User Created');
                                   }
                                 } else {
                                   setState(() {
@@ -203,6 +265,7 @@ class _RegisterSellerState extends State<RegisterSeller> {
                               child: bodyTextstyle(
                                   'Register', HexColor('0a1931'), 18)),
                         ),
+
                         SizedBox(
                           height: 20,
                         ),
@@ -215,7 +278,7 @@ class _RegisterSellerState extends State<RegisterSeller> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => LoginSeller(),
+                                  builder: (context) => Login(),
                                 ),
                               );
                             },

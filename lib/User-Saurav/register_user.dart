@@ -5,7 +5,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shop_it/Authentication-Soham/loading.dart';
 import 'package:shop_it/Style/text_field_decoration.dart';
 import 'package:shop_it/User-Saurav/UserHome.dart';
-import 'package:shop_it/User-Saurav/login_user.dart';
+import 'package:shop_it/User-Saurav/login.dart';
 
 class RegisterUser extends StatefulWidget {
   const RegisterUser({Key? key}) : super(key: key);
@@ -117,7 +117,7 @@ class _RegisterUserState extends State<RegisterUser> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => LoginUser(),
+                              builder: (context) => Login(),
                             ),
                           );
                         },

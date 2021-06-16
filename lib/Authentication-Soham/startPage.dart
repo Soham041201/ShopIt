@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:shop_it/Seller-Chinmayee/wrapper_seller.dart';
+import 'package:shop_it/Seller-Chinmayee/register.dart';
 import 'package:shop_it/Style/text_field_decoration.dart';
-import 'package:shop_it/User-Saurav/login_user.dart';
-import 'package:shop_it/User-Saurav/wrapper_user.dart';
+import 'package:shop_it/User-Saurav/login.dart';
 
 class StartPage extends StatelessWidget {
   const StartPage({Key? key}) : super(key: key);
@@ -23,28 +22,27 @@ class StartPage extends StatelessWidget {
               height: 20,
             ),
             Container(
-                width: 200,
+                width: 230,
                 child: CupertinoButton(
                     color: Colors.white,
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
-                            builder: (context) => WrapperSeller()),
+                        MaterialPageRoute(builder: (context) => Register()),
                       );
                     },
-                    child: bodyTextstyle('SELL', Colors.black, 18))),
+                    child: bodyTextstyle('REGISTER', Colors.black, 18))),
             SizedBox(
               height: 18,
             ),
             Container(
-              width: 200,
+              width: 230,
               child: CupertinoButton(
-                child: bodyTextstyle('BUY', Colors.black, 18),
+                child: bodyTextstyle('LOGIN', Colors.black, 18),
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => WrapperUser()),
+                    MaterialPageRoute(builder: (context) => Login()),
                   );
                 },
                 color: Colors.white,
