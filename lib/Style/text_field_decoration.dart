@@ -3,6 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 InputDecoration textFieldDecoration(String hintText) {
   return InputDecoration(
+    fillColor: Colors.white,
+    counterStyle: TextStyle(color: Colors.white, fontWeight: FontWeight.w200),
     labelText: hintText,
     labelStyle: TextStyle(color: Colors.white, fontWeight: FontWeight.w200),
     contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),

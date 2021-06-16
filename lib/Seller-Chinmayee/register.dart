@@ -214,45 +214,15 @@ class _RegisterSellerState extends State<Register> {
                                         'type': theirGroupValue
                                       },
                                     );
-
-                                    // var firebaseUser =
-                                    //     FirebaseAuth.instance.currentUser;
-                                    // FirebaseFirestore.instance
-                                    //     .collection("Users")
-                                    //     .doc(firebaseUser!.uid)
-                                    //     .get()
-                                    //     .then((value) {
-                                    //   print(value.data()!["name"]);
-                                    // });
-                                    // StreamBuilder<QuerySnapshot>(
-                                    //     stream: _usersStream,
-                                    //     builder: (BuildContext context,
-                                    //         AsyncSnapshot<QuerySnapshot>
-                                    //             snapshot) {
-                                    //       if (snapshot.hasError) {
-                                    //         return Text("Something went wrong");
-                                    //       }
-
-                                    //       if (snapshot.connectionState ==
-                                    //           ConnectionState.done) {
-                                    //         snapshot.data!.docs.map(
-                                    //             (DocumentSnapshot document) {
-                                    //           Map<String, dynamic> data =
-                                    //               document.data()
-                                    //                   as Map<String, dynamic>;
-                                    //           print(data);
-                                    //           if (data['type'] == 'Buyer') {
-                                    //             return UserHome();
-                                    //           } else if (data['type'] ==
-                                    //               'Seller') {
-                                    //             return SellerHome(
-                                    //                 firstName: data['name']);
-                                    //           }
-                                    //           print(data['name']);
-                                    //         });
-                                    //       }
-                                    //       return Register();
-                                    //     });
+                                    setState(() {
+                                      loading = false;
+                                    });
+                                    SimpleDialog(
+                                      title: bodyTextstyle(
+                                          'Your Account has been created successfully',
+                                          Colors.black,
+                                          32),
+                                    );
                                     print('User Created');
                                   }
                                 } else {

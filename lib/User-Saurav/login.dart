@@ -1,8 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shop_it/Authentication-Soham/loading.dart';
+import 'package:shop_it/Seller-Chinmayee/SellerHome.dart';
 import 'package:shop_it/Seller-Chinmayee/register.dart';
 import 'package:shop_it/Style/text_field_decoration.dart';
 import 'package:shop_it/User-Saurav/UserHome.dart';
@@ -89,12 +91,38 @@ class _LoginUserState extends State<Login> {
                                           email: email, password: password);
 
                                   if (result != null) {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => UserHome(),
-                                      ),
-                                    );
+                                    try {
+                                      await FirebaseFirestore.instance
+                                          .collection('Users')
+                                          .get()
+                                          .then((querySnapshot) {
+                                        querySnapshot.docs.forEach((element) {
+                                          if (element['type'] == 'Buyer') {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    UserHome(),
+                                              ),
+                                            );
+                                          } else if (element['type'] ==
+                                              'Seller') {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    SellerHome(
+                                                        firstName:
+                                                            element['name']),
+                                              ),
+                                            );
+                                          }
+                                        });
+                                      });
+                                    } catch (e) {
+                                      print(e.toString());
+                                      return null;
+                                    }
                                   }
                                 } else {
                                   setState(() {
