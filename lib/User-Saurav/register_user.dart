@@ -27,7 +27,7 @@ class _RegisterUserState extends State<RegisterUser> {
       home: loading
           ? Loading()
           : Scaffold(
-              backgroundColor: Colors.white,
+              backgroundColor: HexColor('0a1931'),
               body: Container(
                 padding: EdgeInsets.all(20),
                 child: Form(
@@ -35,10 +35,7 @@ class _RegisterUserState extends State<RegisterUser> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        'REGISTER USER PAGE',
-                        textScaleFactor: 2,
-                      ),
+                      titleTextstyle('REGISTER AS USER'),
                       SizedBox(
                         height: 20,
                       ),

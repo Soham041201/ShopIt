@@ -29,166 +29,165 @@ class _LoginUserState extends State<LoginUser> {
       home: loading
           ? Loading()
           : Scaffold(
-              backgroundColor: Colors.white12,
+              backgroundColor: HexColor('0a1931'),
               body: Container(
                 padding: EdgeInsets.all(20),
                 child: Form(
                   key: _fromKey,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'LOGIN USER PAGE',
-                        textScaleFactor: 2,
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      SizedBox(height: 10),
-                      TextFormField(
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontSize: 20.0, fontWeight: FontWeight.w300),
-                        decoration: textFieldDecoration('Email'),
-                        validator: (val) =>
-                            val!.isEmpty ? 'Enter your Email' : null,
-                        onChanged: (val) {
-                          setState(() => email = val);
-                        },
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      TextFormField(
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontSize: 20.0, fontWeight: FontWeight.w300),
-                        decoration: textFieldDecoration('Password'),
-                        validator: (val) =>
-                            val!.isEmpty ? 'Enter your Password' : null,
-                        onChanged: (val) {
-                          setState(() => password = val);
-                        },
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      CupertinoButton(
-                        color: Colors.blue,
-                        onPressed: () async {
-                          if (_fromKey.currentState!.validate()) {
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        SizedBox(height: 40),
+                        titleTextstyle('LOGIN AS USER'),
+                        SizedBox(height: 150),
+                        Text(
+                          error,
+                          style: TextStyle(color: Colors.red),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        TextFormField(
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontSize: 20.0, fontWeight: FontWeight.w300),
+                          decoration: textFieldDecoration('Email'),
+                          validator: (val) =>
+                              val!.isEmpty ? 'Enter your Email' : null,
+                          onChanged: (val) {
+                            setState(() => email = val);
+                          },
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        TextFormField(
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontSize: 20.0, fontWeight: FontWeight.w300),
+                          decoration: textFieldDecoration('Password'),
+                          validator: (val) =>
+                              val!.isEmpty ? 'Enter your Password' : null,
+                          onChanged: (val) {
+                            setState(() => password = val);
+                          },
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          width: 300,
+                          child: CupertinoButton(
+                              color: Colors.white,
+                              onPressed: () async {
+                                if (_fromKey.currentState!.validate()) {
+                                  setState(() {
+                                    loading = true;
+                                  });
+
+                                  dynamic result =
+                                      await _auth.signInWithEmailAndPassword(
+                                          email: email, password: password);
+
+                                  if (result != null) {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => UserHome(),
+                                      ),
+                                    );
+                                  }
+                                } else {
+                                  setState(() {
+                                    error = 'Check your Email and Password';
+                                    loading = false;
+                                  });
+                                }
+                              },
+                              child: bodyTextstyle('Login', Colors.black, 20)),
+                        ),
+                        SizedBox(height: 20),
+
+                        SizedBox(
+                          height: 10,
+                        ),
+                        bodyTextstyle('Or Sign-up Using', Colors.white, 20),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        IconButton(
+                          focusColor: Colors.white,
+                          disabledColor: Colors.white,
+                          splashColor: Colors.white,
+                          padding: EdgeInsets.symmetric(horizontal: 60),
+                          color: Colors.white,
+                          onPressed: () async {
                             setState(() {
                               loading = true;
                             });
-
-                            dynamic result =
-                                await _auth.signInWithEmailAndPassword(
-                                    email: email, password: password);
-
-                            if (result != null) {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => UserHome(),
-                                ),
-                              );
+                            GoogleSignInAccount? googleUser =
+                                await _googleSignIn.signIn();
+                            GoogleSignInAuthentication googleAuth =
+                                await googleUser!.authentication;
+                            // final User user = _auth.
+                            loading = false;
+                            if (googleAuth.idToken != null) {
+                              setState(() {
+                                loading = false;
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => UserHome(),
+                                  ),
+                                );
+                              });
                             }
-                          } else {
-                            setState(() {
-                              error = 'Check your Email and Password';
-                              loading = false;
-                            });
-                          }
-                        },
-                        child: Text('Login'),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text(error),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        'OR',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      CupertinoButton(
-                        borderRadius: BorderRadius.all(Radius.circular(20)),
-                        padding: EdgeInsets.symmetric(horizontal: 60),
-                        color: Colors.white,
-                        onPressed: () async {
-                          setState(() {
-                            loading = true;
-                          });
-                          GoogleSignInAccount? googleUser =
-                              await _googleSignIn.signIn();
-                          GoogleSignInAuthentication googleAuth =
-                              await googleUser!.authentication;
-                          // final User user = _auth.
-                          loading = false;
-                          if (googleAuth.idToken != null) {
-                            setState(() {
-                              loading = false;
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => UserHome(),
-                                ),
-                              );
-                            });
-                          }
-                        },
-                        child: Container(
-                          height: 20,
-                          child: Row(
-                            children: [
-                              Image(
-                                image: NetworkImage(
-                                  'https://raw.githubusercontent.com/sbis04/flutterfire-samples/google-sign-in/assets/google_logo.png',
-                                ),
-                              ),
-                              SizedBox(
-                                width: 20,
-                              ),
-                              Text(
-                                'Sign-in with Google',
-                                style: TextStyle(color: Colors.black54),
-                              ),
-                            ],
+                          },
+                          icon: Image(
+                            image: NetworkImage(
+                              'https://raw.githubusercontent.com/sbis04/flutterfire-samples/google-sign-in/assets/google_logo.png',
+                            ),
                           ),
-                        ), // Suyog change this design
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text('Not Registerted?',
-                          style: TextStyle(
-                              fontFamily: 'SourceSansPro',
-                              fontWeight: FontWeight.w400,
-                              fontSize: 20,
-                              color: Colors.white)),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      CupertinoButton(
-                        color: Colors.blue,
-                        onPressed: () async {
-                          Navigator.push(
+                        ),
+                        //Add Icons for facebook
+                        SizedBox(
+                          height: 150,
+                        ),
+                        bodyTextstyle('Not Registered Yet?', Colors.white, 20),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        GestureDetector(
+                          child: bodyTextstyle(
+                            'Register Now!',
+                            Colors.white,
+                            15,
+                          ),
+                          onTap: () => Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) => RegisterUser(),
                             ),
-                          );
-                        },
-                        child: Text('Register'),
-                      )
-                    ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
             ),
     );
   }
+}
+
+class HexColor extends Color {
+  static int _getColorFromHex(String hexColor) {
+    hexColor = hexColor.toUpperCase().replaceAll("#", "");
+    if (hexColor.length == 6) {
+      hexColor = "FF" + hexColor;
+    }
+    return int.parse(hexColor, radix: 16);
+  }
+
+  HexColor(final String hexColor) : super(_getColorFromHex(hexColor));
 }

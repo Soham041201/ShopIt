@@ -6,7 +6,7 @@ import 'package:shop_it/Seller-Chinmayee/SellerHome.dart';
 import 'package:shop_it/Seller-Chinmayee/login_seller.dart';
 import 'package:shop_it/Style/text_field_decoration.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:shop_it/User-Saurav/login_user.dart';
 
 class RegisterSeller extends StatefulWidget {
   const RegisterSeller({Key? key}) : super(key: key);
@@ -24,7 +24,8 @@ class _RegisterSellerState extends State<RegisterSeller> {
   String lastName = '';
   var dob;
   String dropdownValue = '';
-
+  String mobileNumber = '';
+  String seller = '';
   final _auth = FirebaseAuth.instance;
   final _fromKey = GlobalKey<FormState>();
   final _firestore = FirebaseFirestore.instance;
@@ -34,23 +35,7 @@ class _RegisterSellerState extends State<RegisterSeller> {
       home: loading
           ? Loading()
           : Scaffold(
-              appBar: AppBar(
-                title: Text(
-                  'REGISTER SELLER PAGE',
-                  textScaleFactor: 1,
-                  style: TextStyle(
-                      fontFamily: 'SourceSansPro', fontWeight: FontWeight.w300),
-                ),
-                backgroundColor: Colors.blue.withOpacity(0.2),
-                toolbarOpacity: 1,
-                centerTitle: true,
-                leading: GestureDetector(
-                  child: Icon(Icons.home),
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                ),
-              ),
+              backgroundColor: HexColor('0a1931'),
               body: SingleChildScrollView(
                 child: Container(
                   padding: EdgeInsets.all(20),
@@ -58,6 +43,13 @@ class _RegisterSellerState extends State<RegisterSeller> {
                     key: _fromKey,
                     child: Column(
                       children: [
+                        SizedBox(
+                          height: 20,
+                        ),
+                        titleTextstyle('Register Seller Page'),
+                        SizedBox(
+                          height: 65,
+                        ),
                         TextFormField(
                           textAlign: TextAlign.center,
                           style: TextStyle(
@@ -70,7 +62,7 @@ class _RegisterSellerState extends State<RegisterSeller> {
                           decoration: textFieldDecoration('First Name'),
                         ),
                         SizedBox(
-                          height: 5,
+                          height: 10,
                         ),
                         TextFormField(
                           textAlign: TextAlign.center,
@@ -84,64 +76,42 @@ class _RegisterSellerState extends State<RegisterSeller> {
                           decoration: textFieldDecoration('Last Name'),
                         ),
                         SizedBox(
-                          height: 5,
+                          height: 10,
                         ),
                         //Change Styling of Calrender from here
-                        Container(
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                'ENTER YOUR DATE OF BIRTH',
-                                style: TextStyle(
-                                  fontFamily: 'SourceSansPro',
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w200,
-                                  color: Colors.blue,
-                                ),
-                              ),
-                              CupertinoButton(
-                                onPressed: () {
-                                  DatePicker.showDatePicker(
-                                    context,
-                                    showTitleActions: true,
-                                    minTime: DateTime(1930, 1, 1),
-                                    maxTime: DateTime.now(),
-                                    onChanged: (date) {
-                                      dob = date;
-                                    },
-                                    onConfirm: (date) {
-                                      dob = date;
-                                    },
-                                  );
-                                },
-                                child: Icon(Icons.calendar_today),
-                              ),
-                            ],
-                          ),
-                        ),
-                        // TextFormField(
-                        //   keyboardType: TextInputType.datetime,
-                        //   textAlign: TextAlign.center,
-                        //   style: TextStyle(
-                        //       fontSize: 20.0, fontWeight: FontWeight.w300),
-                        //   validator: (val) =>
-                        //       val!.isEmpty ? 'Enter your Date of Birth' : null,
-                        //   onChanged: (val) {
-                        //     setState(() => dob = val);
-                        //   },
-                        //   decoration:
-                        //       textFieldDecoration('Date of birth DD/MM/YYYY'),
-                        // ),
-                        SizedBox(
-                          height: 5,
+                        TextFormField(
+                          keyboardType: TextInputType.datetime,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontSize: 20.0, fontWeight: FontWeight.w300),
+                          validator: (val) =>
+                              val!.isEmpty ? 'Enter your Date of Birth' : null,
+                          onChanged: (val) {
+                            setState(() => dob = val);
+                          },
+                          decoration:
+                              textFieldDecoration('Date of birth DD/MM/YYYY'),
                         ),
                         SizedBox(
-                          height: 5,
+                          height: 10,
+                        ),
+                        TextFormField(
+                          keyboardType: TextInputType.phone,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontSize: 20.0, fontWeight: FontWeight.w300),
+                          validator: (val) => val!.length < 10
+                              ? 'Enter your Mobile Number'
+                              : null,
+                          onChanged: (val) {
+                            setState(() => lastName = val);
+                          },
+                          decoration: textFieldDecoration('Mobile Number'),
                         ),
                         SizedBox(
-                          height: 5,
+                          height: 10,
                         ),
+
                         TextFormField(
                             textAlign: TextAlign.center,
                             style: TextStyle(
@@ -149,11 +119,11 @@ class _RegisterSellerState extends State<RegisterSeller> {
                             validator: (val) =>
                                 val!.isEmpty ? 'Enter your Email' : null,
                             onChanged: (val) {
-                              setState(() => email = val);
+                              setState(() => mobileNumber = val);
                             },
                             decoration: textFieldDecoration('Email')),
                         SizedBox(
-                          height: 5,
+                          height: 10,
                         ),
                         TextFormField(
                           obscureText: true,
@@ -170,76 +140,87 @@ class _RegisterSellerState extends State<RegisterSeller> {
                         SizedBox(
                           height: 10,
                         ),
-                        CupertinoButton(
-                          pressedOpacity: 0.1,
-                          color: Colors.blue,
-                          onPressed: () async {
-                            if (_fromKey.currentState!.validate()) {
-                              setState(() {
-                                loading = true;
-                              });
+                        // CupertinoSlidingSegmentedControl(
+                        //     children:List[Seller,Buyer], onValueChanged:(val){
 
-                              dynamic result =
-                                  await _auth.createUserWithEmailAndPassword(
-                                      email: email, password: password);
-                              if (result != null) {
-                                _firestore.collection('user_data').add(
-                                  {
-                                    'name': firstName,
-                                    'lastName': lastName,
-                                    'dateOfbirth': dob,
-                                    'email': _auth.currentUser!.email
-                                  },
-                                );
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => SellerHome(
-                                      firstName: firstName,
-                                    ),
-                                  ),
-                                );
-                              }
-                            } else {
-                              setState(() {
-                                error = 'Check your Email and Password';
-                                loading = false;
-                              });
-                            }
-                          },
-                          child: Text('Register'),
+                        //     }),
+                        Container(
+                          width: 200,
+                          child: CupertinoButton(
+                              pressedOpacity: 0.1,
+                              color: Colors.white,
+                              onPressed: () async {
+                                if (_fromKey.currentState!.validate()) {
+                                  setState(() {
+                                    loading = true;
+                                  });
+
+                                  dynamic result = await _auth
+                                      .createUserWithEmailAndPassword(
+                                          email: email, password: password);
+                                  if (result != null) {
+                                    await _firestore
+                                        .collection('Registered Sellers')
+                                        .add(
+                                      {
+                                        'name': firstName,
+                                        'lastName': lastName,
+                                        'dateOfbirth': dob,
+                                        'email': _auth.currentUser!.email,
+                                        'mobileNumber': mobileNumber,
+                                      },
+                                    );
+                                    await _firestore.collection('Seller').add({
+                                      "Name": firstName,
+                                      "device no": '',
+                                      "Seller": seller,
+                                      "Uid": _auth.currentUser!.uid,
+                                      "Role": "user"
+                                    });
+                                    try {
+                                      await _auth.currentUser!
+                                          .sendEmailVerification();
+                                    } catch (e) {
+                                      print(e);
+                                    }
+
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => SellerHome(
+                                          firstName: firstName,
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                } else {
+                                  setState(() {
+                                    error = 'Please Enter the required Details';
+                                    loading = false;
+                                  });
+                                }
+                              },
+                              child: bodyTextstyle(
+                                  'Register', HexColor('0a1931'), 18)),
                         ),
                         SizedBox(
-                          height: 10,
+                          height: 20,
                         ),
-                        Text(error),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text('Already Registered?',
-                            style: TextStyle(
-                                fontFamily: 'SourceSansPro',
-                                fontWeight: FontWeight.w400,
-                                fontSize: 20)),
+                        bodyTextstyle('Already Registered ?', Colors.white, 15),
                         SizedBox(
                           height: 10,
                         ),
                         GestureDetector(
-                          onTap: () async {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => LoginSeller(),
-                              ),
-                            );
-                          },
-                          child: Text('Login',
-                              style: TextStyle(
-                                  color: Colors.blue,
-                                  fontFamily: 'SourceSansPro',
-                                  fontWeight: FontWeight.w300,
-                                  fontSize: 20)),
-                        )
+                            onTap: () async {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => LoginSeller(),
+                                ),
+                              );
+                            },
+                            child: bodyTextstyle(
+                                'Login', Colors.blue.shade700, 18))
                       ],
                     ),
                   ),
