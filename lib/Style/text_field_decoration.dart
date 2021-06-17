@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-InputDecoration textFieldDecoration(String hintText) {
+InputDecoration textFieldDecoration(String hintText, IconData icon) {
   return InputDecoration(
+    prefixIcon: Icon(
+      icon,
+      color: Colors.white,
+    ),
     fillColor: Colors.white,
     counterStyle: TextStyle(color: Colors.white, fontWeight: FontWeight.w200),
     labelText: hintText,

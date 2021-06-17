@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shop_it/Authentication-Soham/loading.dart';
 import 'package:shop_it/Seller-Chinmayee/SellerHome.dart';
@@ -51,8 +52,10 @@ class _LoginUserState extends State<Login> {
                         TextFormField(
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                              fontSize: 20.0, fontWeight: FontWeight.w300),
-                          decoration: textFieldDecoration('Email'),
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.w300,
+                              color: Colors.white),
+                          decoration: textFieldDecoration('Email', Icons.email),
                           validator: (val) =>
                               val!.isEmpty ? 'Enter your Email' : null,
                           onChanged: (val) {
@@ -65,8 +68,11 @@ class _LoginUserState extends State<Login> {
                         TextFormField(
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                              fontSize: 20.0, fontWeight: FontWeight.w300),
-                          decoration: textFieldDecoration('Password'),
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.w300,
+                              color: Colors.white),
+                          decoration:
+                              textFieldDecoration('Password', Icons.password),
                           validator: (val) =>
                               val!.isEmpty ? 'Enter your Password' : null,
                           onChanged: (val) {
