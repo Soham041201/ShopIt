@@ -36,6 +36,7 @@ class _RegisterSellerState extends State<Register> {
     ),
   };
   bool loading = false;
+  bool checkbox = true;
   String email = '';
   String password = '';
   String error = '';
@@ -48,8 +49,7 @@ class _RegisterSellerState extends State<Register> {
   final _auth = FirebaseAuth.instance;
   final _fromKey = GlobalKey<FormState>();
   final _firestore = FirebaseFirestore.instance;
-  final Stream<QuerySnapshot> _usersStream =
-      FirebaseFirestore.instance.collection('users').snapshots();
+
   // ignore: unused_element
   static Widget giveCenter(String yourText) {
     return Center(
@@ -88,13 +88,16 @@ class _RegisterSellerState extends State<Register> {
                         TextFormField(
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                              fontSize: 20.0, fontWeight: FontWeight.w300),
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.w300,
+                              color: Colors.white),
                           validator: (val) =>
                               val!.isEmpty ? 'Enter your Name' : null,
                           onChanged: (val) {
                             setState(() => firstName = val);
                           },
-                          decoration: textFieldDecoration('First Name'),
+                          decoration:
+                              textFieldDecoration('First Name', Icons.person),
                         ),
                         SizedBox(
                           height: 10,
@@ -102,13 +105,16 @@ class _RegisterSellerState extends State<Register> {
                         TextFormField(
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                              fontSize: 20.0, fontWeight: FontWeight.w300),
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.w300,
+                              color: Colors.white),
                           validator: (val) =>
                               val!.isEmpty ? 'Enter your Surname' : null,
                           onChanged: (val) {
                             setState(() => lastName = val);
                           },
-                          decoration: textFieldDecoration('Last Name'),
+                          decoration:
+                              textFieldDecoration('Last Name', Icons.person),
                         ),
                         SizedBox(
                           height: 10,
@@ -118,14 +124,53 @@ class _RegisterSellerState extends State<Register> {
                           keyboardType: TextInputType.datetime,
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                              fontSize: 20.0, fontWeight: FontWeight.w300),
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.w300,
+                              color: Colors.white),
                           validator: (val) =>
                               val!.isEmpty ? 'Enter your Date of Birth' : null,
                           onChanged: (val) {
                             setState(() => dob = val);
                           },
-                          decoration:
-                              textFieldDecoration('Date of birth DD/MM/YYYY'),
+                          decoration: InputDecoration(
+                            prefixIcon: GestureDetector(
+                              onTap: () => showDatePicker(
+                                  context: context,
+                                  initialDate: DateTime.now(),
+                                  firstDate: DateTime(1930, 1, 1),
+                                  lastDate: DateTime.now()),
+                              child: Icon(
+                                Icons.calendar_today,
+                                color: Colors.white,
+                              ),
+                            ),
+                            fillColor: Colors.white,
+                            counterStyle: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w200),
+                            labelText: 'DATE OF BIRTH',
+                            labelStyle: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w200),
+                            contentPadding: EdgeInsets.symmetric(
+                                vertical: 10.0, horizontal: 30.0),
+                            border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(30.0)),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.white24, width: 1.0),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(32.0)),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.purple, width: 2.0),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(32.0)),
+                            ),
+                          ),
                         ),
                         SizedBox(
                           height: 10,
@@ -134,14 +179,17 @@ class _RegisterSellerState extends State<Register> {
                           keyboardType: TextInputType.phone,
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                              fontSize: 20.0, fontWeight: FontWeight.w300),
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.w300,
+                              color: Colors.white),
                           validator: (val) => val!.length < 10
                               ? 'Enter your Mobile Number'
                               : null,
                           onChanged: (val) {
                             setState(() => mobileNumber = val);
                           },
-                          decoration: textFieldDecoration('Mobile Number'),
+                          decoration:
+                              textFieldDecoration('Mobile Number', Icons.call),
                         ),
                         SizedBox(
                           height: 10,
@@ -150,30 +198,37 @@ class _RegisterSellerState extends State<Register> {
                         TextFormField(
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                                fontSize: 20.0, fontWeight: FontWeight.w300),
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.w300,
+                                color: Colors.white),
                             validator: (val) =>
                                 val!.isEmpty ? 'Enter your Email' : null,
                             onChanged: (val) {
                               setState(() => email = val);
                             },
-                            decoration: textFieldDecoration('Email')),
+                            decoration:
+                                textFieldDecoration('Email', Icons.email)),
                         SizedBox(
                           height: 10,
                         ),
                         TextFormField(
-                          obscureText: true,
+                          obscureText: checkbox,
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                              fontSize: 20.0, fontWeight: FontWeight.w300),
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.w300,
+                              color: Colors.white),
                           validator: (val) =>
                               val!.isEmpty ? 'Enter your Password' : null,
                           onChanged: (val) {
                             setState(() => password = val);
                           },
-                          decoration: textFieldDecoration('Password'),
+                          decoration:
+                              textFieldDecoration('Password', Icons.password),
                         ),
+
                         SizedBox(
-                          height: 10,
+                          height: 30,
                         ),
 
                         CupertinoSlidingSegmentedControl(
@@ -187,7 +242,7 @@ class _RegisterSellerState extends State<Register> {
                           children: logoWidgets,
                         ),
                         SizedBox(
-                          height: 10,
+                          height: 20,
                         ),
                         Container(
                           width: 200,
