@@ -3,10 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shop_it/Authentication-Soham/loading.dart';
-import 'package:shop_it/Seller-Chinmayee/SellerHome.dart';
 import 'package:shop_it/Style/text_field_decoration.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:shop_it/User-Saurav/UserHome.dart';
 import 'package:shop_it/User-Saurav/login.dart';
 
 class Register extends StatefulWidget {
@@ -46,6 +44,7 @@ class _RegisterSellerState extends State<Register> {
   String dropdownValue = '';
   String mobileNumber = '';
   String seller = '';
+  String login = '';
   final _auth = FirebaseAuth.instance;
   final _fromKey = GlobalKey<FormState>();
   final _firestore = FirebaseFirestore.instance;
@@ -79,11 +78,15 @@ class _RegisterSellerState extends State<Register> {
                     child: Column(
                       children: [
                         SizedBox(
-                          height: 50,
+                          height: 25,
                         ),
                         titleTextstyle('Register'),
                         SizedBox(
                           height: 65,
+                        ),
+                        bodyTextstyle(login, Colors.green, 25),
+                        SizedBox(
+                          height: 10,
                         ),
                         TextFormField(
                           textAlign: TextAlign.center,
@@ -259,6 +262,8 @@ class _RegisterSellerState extends State<Register> {
                                       .createUserWithEmailAndPassword(
                                           email: email, password: password);
                                   if (result != null) {
+                                    login =
+                                        'Your Account has been created successfully.Please login to continue';
                                     await _firestore.collection('Users').add(
                                       {
                                         'name': firstName,
@@ -272,14 +277,19 @@ class _RegisterSellerState extends State<Register> {
                                     setState(() {
                                       loading = false;
                                     });
-                                    SimpleDialog(
-                                      title: bodyTextstyle(
-                                          'Your Account has been created successfully',
-                                          Colors.black,
-                                          32),
+                                    DialogRoute<void>(
+                                      context: context,
+                                      builder: (BuildContext context) =>
+                                          SimpleDialog(
+                                        title: bodyTextstyle(
+                                            'Your Account has been created successfully',
+                                            Colors.black,
+                                            32),
+                                      ),
                                     );
-                                    print('User Created');
                                   }
+
+                                  print('User Created');
                                 } else {
                                   setState(() {
                                     error = 'Please Enter the required Details';

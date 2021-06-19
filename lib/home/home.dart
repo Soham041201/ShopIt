@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shop_it/Authentication-Soham/startPage.dart';
+import 'package:shop_it/Authentication-Soham/wrapper.dart';
 
 class Home extends StatelessWidget {
   @override
@@ -16,7 +16,7 @@ class Home extends StatelessWidget {
           ),
         ),
       ),
-      body: StartPage(),
+      body: Wrapper(),
     );
   }
 }
