@@ -51,6 +51,8 @@ flutter:
   # example:
   # fonts:
 
+  assets:
+    - assets/images/
 
 #copy the same pattern followed above to change the font. "THIS FILE IS INDENTATION SPECIFIC" 
 
