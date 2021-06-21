@@ -107,15 +107,8 @@ class _UserHomeState extends State<UserHome> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.all(10),
-                child: Text(
-                  'Popular Categories',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                      color: Colors.black),
-                ),
-              ),
+                  padding: EdgeInsets.all(10),
+                  child: bodyTextstyle('Popular Choices', Colors.black, 28)),
               Container(
                 height: 300,
                 child: ListView(
