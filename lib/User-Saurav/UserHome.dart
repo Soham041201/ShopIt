@@ -54,24 +54,7 @@ class _UserHomeState extends State<UserHome> {
 
       appBar: AppBar(
         backgroundColor: HexColor('0a1931'),
-        title: Center(
-          child: Text('ShopIT'),
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: GestureDetector(
-              child: Icon(Icons.logout),
-              onTap: () {
-                setState(() {
-                  FirebaseAuth.instance.signOut();
-                  GoogleSignIn().signOut();
-                  Navigator.pop(context);
-                });
-              },
-            ),
-          ),
-        ],
+        title: Center(child: titleTextstyle('ShopIt')),
       ),
 
       // Appbar ends here
@@ -79,9 +62,31 @@ class _UserHomeState extends State<UserHome> {
       // Drawer starts
 
       drawer: Drawer(
-        child: Scaffold(
-          // backgroundColor: HexColor('0a1931'),
-          backgroundColor: Colors.white,
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            DrawerHeader(
+              child: titleTextstyle('Contents'),
+              padding: EdgeInsets.fromLTRB(15, 120, 0, 0),
+              decoration: BoxDecoration(color: HexColor('0a1931')),
+            ),
+            ListTile(
+              leading: Icon(Icons.logout),
+              title: bodyTextstyle('Logout', Colors.white, 20),
+              onTap: () {
+                setState(() {
+                  FirebaseAuth.instance.signOut();
+                  GoogleSignIn().signOut();
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Login(),
+                    ),
+                  );
+                });
+              },
+            ),
+          ],
         ),
       ),
 
