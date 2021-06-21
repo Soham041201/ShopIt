@@ -17,6 +17,16 @@ class StartPage extends StatelessWidget {
             SizedBox(
               height: 200,
             ),
+            Hero(
+              tag: 'Logo',
+              child: Icon(
+                Icons.shopping_cart_outlined,
+                size: 200,
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
             titleTextstyle('DO YOU WANT TO?'),
             SizedBox(
               height: 20,

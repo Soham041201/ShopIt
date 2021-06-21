@@ -23,33 +23,6 @@ class _UserHomeState extends State<UserHome> {
     return Scaffold(
       backgroundColor: Colors.white,
 
-      // body: Center(
-      //   child: Column(
-      //     mainAxisAlignment: MainAxisAlignment.center,
-      //     children: [
-      //       Center(
-      //           child: Text(
-      //         'User Home Page',
-      //         textScaleFactor: 2,
-      //       )),
-      //       CupertinoButton(
-      //         child: Text('LOGOUT'),
-      //         onPressed: () async {
-      //           FirebaseAuth.instance.signOut();
-      //           _googleSignIn.signOut();
-      //           Navigator.push(
-      //             context,
-      //             MaterialPageRoute(
-      //               builder: (context) => Login(),
-      //             ),
-      //           );
-      //         },
-      //         color: Colors.blue,
-      //       )
-      //     ],
-      //   ),
-      // ),
-
       // Appbar starts here
 
       appBar: AppBar(

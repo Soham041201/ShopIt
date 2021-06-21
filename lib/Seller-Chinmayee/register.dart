@@ -14,9 +14,17 @@ class Register extends StatefulWidget {
   _RegisterSellerState createState() => _RegisterSellerState();
 }
 
-class _RegisterSellerState extends State<Register> {
+class _RegisterSellerState extends State<Register>
+    with TickerProviderStateMixin {
   String theirGroupValue = 'Buyer';
-
+  late final AnimationController _controller = AnimationController(
+    duration: const Duration(seconds: 2),
+    vsync: this,
+  )..repeat(reverse: true);
+  late final Animation<double> _animation = CurvedAnimation(
+    parent: _controller,
+    curve: Curves.elasticOut,
+  );
   final Map<String, Widget> logoWidgets = <String, Widget>{
     'Buyer': Text(
       "Buyer",
@@ -80,9 +88,18 @@ class _RegisterSellerState extends State<Register> {
                         SizedBox(
                           height: 25,
                         ),
+
                         titleTextstyle('Register'),
                         SizedBox(
-                          height: 65,
+                          height: 20,
+                        ),
+                        Hero(
+                          tag: 'Logo',
+                          child: Icon(
+                            Icons.shopping_cart_outlined,
+                            size: 100,
+                            color: Colors.white,
+                          ),
                         ),
                         bodyTextstyle(login, Colors.green, 25),
                         SizedBox(

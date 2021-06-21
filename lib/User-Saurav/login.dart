@@ -40,7 +40,15 @@ class _LoginUserState extends State<Login> {
                       children: [
                         SizedBox(height: 40),
                         titleTextstyle('LOGIN'),
-                        SizedBox(height: 150),
+                        SizedBox(height: 40),
+                        Hero(
+                          tag: 'Logo',
+                          child: Icon(
+                            Icons.shopping_cart_outlined,
+                            size: 100,
+                            color: Colors.white,
+                          ),
+                        ),
                         Text(
                           error,
                           style: TextStyle(color: Colors.red),
