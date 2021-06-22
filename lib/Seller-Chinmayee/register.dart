@@ -155,10 +155,13 @@ class _RegisterSellerState extends State<Register>
                           decoration: InputDecoration(
                             prefixIcon: GestureDetector(
                               onTap: () => showDatePicker(
-                                  context: context,
-                                  initialDate: DateTime.now(),
-                                  firstDate: DateTime(1930, 1, 1),
-                                  lastDate: DateTime.now()),
+                                      context: context,
+                                      initialDate: DateTime.now(),
+                                      firstDate: DateTime(1930, 1, 1),
+                                      lastDate: DateTime.now())
+                                  .then((value) => setState(() {
+                                        dob = value!;
+                                      })),
                               child: Icon(
                                 Icons.calendar_today,
                                 color: Colors.white,
