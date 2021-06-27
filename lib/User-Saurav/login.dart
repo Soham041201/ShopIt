@@ -73,6 +73,7 @@ class _LoginUserState extends State<Login> {
                           height: 10,
                         ),
                         TextFormField(
+                          obscureText: true,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               fontSize: 20.0,
@@ -193,6 +194,13 @@ class _LoginUserState extends State<Login> {
                             ),
                           ),
                         ),
+                        SizedBox(
+                          height: 12,
+                        ),
+                        bodyTextstyle(
+                            '(If you are a SELLER please login with your email and password)',
+                            Colors.white,
+                            10),
                         //Add Icons for facebook
                         SizedBox(
                           height: 150,
