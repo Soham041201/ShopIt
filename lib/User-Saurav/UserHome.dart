@@ -23,189 +23,331 @@ class _UserHomeState extends State<UserHome> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: onWillPop,
-      child: Scaffold(
-        backgroundColor: Colors.white,
+        onWillPop: onWillPop,
+        child: Scaffold(
+          backgroundColor: Colors.white,
 
-        // Appbar starts here
+          // Appbar starts here
 
-        appBar: AppBar(
-          backgroundColor: HexColor('0a1931'),
-          title: Column(
-            children: [
-              Center(child: titleTextstyle('ShopIt')),
-            ],
-          ),
-        ),
-
-        // Appbar ends here
-
-        // Drawer starts
-
-        drawer: Drawer(
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: [
-              DrawerHeader(
-                child: titleTextstyle('Contents'),
-                padding: EdgeInsets.fromLTRB(15, 120, 0, 0),
-                decoration: BoxDecoration(color: HexColor('0a1931')),
-              ),
-              ListTile(
-                leading: Icon(Icons.logout),
-                title: bodyTextstyle('Logout', Colors.white, 20),
-                onTap: () {
-                  setState(() {
-                    FirebaseAuth.instance.signOut();
-                    GoogleSignIn().signOut();
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Login(),
-                      ),
-                    );
-                  });
-                },
+          appBar: AppBar(
+            backgroundColor: HexColor('0a1931'),
+            actions: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Icon(Icons.shopping_cart_outlined),
               ),
             ],
-          ),
-        ),
-
-        // drawer ends
-
-        // body starts here
-        body: ListView(
-          scrollDirection: Axis.vertical,
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+            title: Row(
               children: [
-                Padding(
-                  padding: EdgeInsets.all(15),
-                  child: Card(
-                    child: Image.asset('assets/images/apple2.png'),
-                    elevation: 15,
-                  ),
+                Center(child: titleTextstyle('ShopIt')),
+              ],
+            ),
+          ),
+
+          // Appbar ends here
+
+          // Drawer starts
+
+          drawer: Drawer(
+            child: ListView(
+              padding: EdgeInsets.zero,
+              children: [
+                DrawerHeader(
+                  child: titleTextstyle('Contents'),
+                  padding: EdgeInsets.fromLTRB(15, 120, 0, 0),
+                  decoration: BoxDecoration(color: HexColor('0a1931')),
                 ),
-                Padding(
-                    padding: EdgeInsets.all(10),
-                    child: bodyTextstyle('Popular Choices', Colors.black, 28)),
-                Container(
-                  height: 300,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: <Widget>[
-                      Padding(
-                        padding: EdgeInsets.all(15),
-                        child: Card(
-                          color: Colors.orange[700],
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50),
-                          ),
-                          elevation: 5,
-                          child: Container(
-                            height: 200,
-                            width: 200,
-                            child: Column(
-                              children: [
-                                Container(
-                                  height: 200,
-                                  width: 200,
-                                  child:
-                                      Image.asset('assets/images/orange.png'),
-                                ),
-                                bodyTextstyle('Shoes', Colors.white,
-                                    24), //Change the font
-                              ],
-                            ),
-                          ),
+                ListTile(
+                  leading: Icon(Icons.logout),
+                  title: bodyTextstyle('Logout', Colors.white, 20),
+                  onTap: () {
+                    setState(() {
+                      FirebaseAuth.instance.signOut();
+                      GoogleSignIn().signOut();
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Login(),
                         ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(15),
-                        child: Card(
-                          color: Colors.red[800],
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50),
-                          ),
-                          elevation: 5,
-                          child: Container(
-                            height: 200,
-                            width: 200,
-                            child: Column(
-                              children: [
-                                Container(
-                                  height: 200,
-                                  width: 200,
-                                  child:
-                                      Image.asset('assets/images/iphone.png'),
-                                ),
-                                Text('ELECTRONICS'),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(15),
-                        child: Card(
-                          color: Colors.lightGreen,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50),
-                          ),
-                          elevation: 5,
-                          child: Container(
-                            height: 200,
-                            width: 200,
-                            child: Column(
-                              children: [
-                                Container(
-                                  height: 200,
-                                  width: 200,
-                                  child: Image.asset('assets/images/broco.png'),
-                                ),
-                                Text('GROCERIES'),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(15),
-                        child: Card(
-                          color: Colors.yellow[700],
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50),
-                          ),
-                          elevation: 5,
-                          child: Container(
-                            height: 200,
-                            width: 200,
-                            child: Column(
-                              children: [
-                                Container(
-                                  height: 200,
-                                  width: 200,
-                                  child:
-                                      Image.asset('assets/images/yellow.png'),
-                                ),
-                                Text('FASHION'),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                      );
+                    });
+                  },
                 ),
               ],
             ),
-          ],
-        ),
+          ),
 
+          // drawer ends
+
+          // body starts here
+          body: ListView(
+            scrollDirection: Axis.vertical,
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.all(15),
+                    child: Card(
+                      child: Image.asset('assets/images/apple2.png'),
+                      elevation: 15,
+                    ),
+                  ),
+                  Padding(
+                      padding: EdgeInsets.all(10),
+                      child:
+                          bodyTextstyle('Popular Choices', Colors.black, 28)),
+                  Container(
+                    height: 300,
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: <Widget>[
+                        Padding(
+                          padding: EdgeInsets.all(15),
+                          child: Card(
+                            color: Colors.orange[700],
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                            elevation: 5,
+                            child: Container(
+                              height: 200,
+                              width: 200,
+                              child: Column(
+                                children: [
+                                  Container(
+                                    height: 200,
+                                    width: 200,
+                                    child:
+                                        Image.asset('assets/images/orange.png'),
+                                  ),
+                                  bodyTextstyle('Shoes', Colors.white,
+                                      24), //Change the font
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.all(15),
+                          child: Card(
+                            color: Colors.red[800],
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                            elevation: 5,
+                            child: Container(
+                              height: 200,
+                              width: 200,
+                              child: Column(
+                                children: [
+                                  Container(
+                                    height: 200,
+                                    width: 200,
+                                    child:
+                                        Image.asset('assets/images/iphone.png'),
+                                  ),
+                                  Text('ELECTRONICS'),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.all(15),
+                          child: Card(
+                            color: Colors.lightGreen,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                            elevation: 5,
+                            child: Container(
+                              height: 200,
+                              width: 200,
+                              child: Column(
+                                children: [
+                                  Container(
+                                    height: 200,
+                                    width: 200,
+                                    child:
+                                        Image.asset('assets/images/broco.png'),
+                                  ),
+                                  Text('GROCERIES'),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.all(15),
+                          child: Card(
+                            color: Colors.yellow[700],
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                            elevation: 5,
+                            child: Container(
+                              height: 200,
+                              width: 200,
+                              child: Column(
+                                children: [
+                                  Container(
+                                    height: 200,
+                                    width: 200,
+                                    child:
+                                        Image.asset('assets/images/yellow.png'),
+                                  ),
+                                  Text('FASHION'),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                      padding: EdgeInsets.all(10),
+                      child:
+                          bodyTextstyle('Products for you', Colors.black, 18)),
+                  Container(
+                    height: 300,
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.all(10),
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            color: Colors.white,
+                            elevation: 5,
+                            child: Container(
+                              height: 200,
+                              width: 175,
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.all(5),
+                                    child: Container(
+                                      height: 150,
+                                      width: 150,
+                                      child: Image.asset(
+                                          'assets/images/iphone.png'),
+                                    ),
+                                  ),
+                                  Container(
+                                    height: 45,
+                                    child: Padding(
+                                      padding: EdgeInsets.all(3),
+                                      child: Text(
+                                        'Apple iPhone 12 128 GB, Blue',
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.all(15),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          '\$999',
+                                          style: TextStyle(
+                                            fontSize: 20,
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                        Icon(
+                                          Icons.add,
+                                          color: HexColor('0a1931'),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.all(10),
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            elevation: 5,
+                            color: Colors.white,
+                            child: Container(
+                              height: 200,
+                              width: 175,
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.all(5),
+                                    child: Container(
+                                      height: 150,
+                                      width: 150,
+                                      child: Image.asset(
+                                          'assets/images/orange.png'),
+                                    ),
+                                  ),
+                                  Container(
+                                    height: 45,
+                                    child: Padding(
+                                      padding: EdgeInsets.all(3),
+                                      child: Text(
+                                        'Nike Air Max 1 SE Just Do It - Orange Shoes - Size 9',
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.all(15),
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          '\$569',
+                                          style: TextStyle(
+                                            fontSize: 20,
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                        Container(
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsets.only(left: 70),
+                                            child: Icon(
+                                              Icons.add,
+                                              color: HexColor('0a1931'),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        )
         // body ends here
-      ),
-    );
+
+        );
   }
 
   Future<bool> onWillPop() async {
