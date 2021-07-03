@@ -22,7 +22,9 @@ class Wrapper extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => UserHome(),
+                  builder: (context) => UserHome(
+                    firstname: element['name'],
+                  ),
                 ),
               );
             } else if (element['type'] == 'Seller') {
@@ -40,7 +42,8 @@ class Wrapper extends StatelessWidget {
       }
     }
     if (GoogleSignIn().currentUser != null) {
-      return UserHome();
+      return UserHome(firstname: '');
+      //modify here
     }
     return StartPage();
   }

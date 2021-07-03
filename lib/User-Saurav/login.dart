@@ -22,6 +22,7 @@ class _LoginUserState extends State<Login> {
   String email = '';
   String password = '';
   String error = '';
+  String eror = '';
   final _auth = FirebaseAuth.instance;
   final _fromKey = GlobalKey<FormState>();
   @override
@@ -51,6 +52,10 @@ class _LoginUserState extends State<Login> {
                         ),
                         Text(
                           error,
+                          style: TextStyle(color: Colors.red),
+                        ),
+                        Text(
+                          eror,
                           style: TextStyle(color: Colors.red),
                         ),
                         SizedBox(
@@ -115,8 +120,9 @@ class _LoginUserState extends State<Login> {
                                             Navigator.push(
                                               context,
                                               MaterialPageRoute(
-                                                builder: (context) =>
-                                                    UserHome(),
+                                                builder: (context) => UserHome(
+                                                  firstname: element['name'],
+                                                ),
                                               ),
                                             );
                                           } else if (element['type'] ==
@@ -169,22 +175,28 @@ class _LoginUserState extends State<Login> {
                               setState(() {
                                 loading = true;
                               });
-                              GoogleSignInAccount? googleUser =
-                                  await _googleSignIn.signIn();
-                              GoogleSignInAuthentication googleAuth =
-                                  await googleUser!.authentication;
-                              // final User user = _auth.
-                              loading = false;
-                              if (googleAuth.idToken != null) {
-                                setState(() {
-                                  loading = false;
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => UserHome(),
-                                    ),
-                                  );
-                                });
+                              try {
+                                GoogleSignInAccount? googleUser =
+                                    await _googleSignIn.signIn();
+                                GoogleSignInAuthentication googleAuth =
+                                    await googleUser!.authentication;
+                                // final User user = _auth.
+                                loading = false;
+                                if (googleAuth.idToken != null) {
+                                  setState(() {
+                                    loading = false;
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => UserHome(
+                                          firstname: googleUser.displayName!,
+                                        ),
+                                      ),
+                                    );
+                                  });
+                                }
+                              } catch (e) {
+                                eror = e.toString();
                               }
                             },
                             icon: Image(
@@ -212,7 +224,7 @@ class _LoginUserState extends State<Login> {
                         GestureDetector(
                           child: bodyTextstyle(
                             'Register Now!',
-                            Colors.white,
+                            Colors.blue,
                             15,
                           ),
                           onTap: () => Navigator.push(

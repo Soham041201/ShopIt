@@ -2,7 +2,6 @@
 
 // Hint: Use List view widget to show the list
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -13,8 +12,8 @@ import 'package:shop_it/Style/text_field_decoration.dart';
 import 'package:shop_it/User-Saurav/login.dart';
 
 class UserHome extends StatefulWidget {
-  const UserHome({Key? key}) : super(key: key);
-
+  const UserHome({Key? key, required this.firstname}) : super(key: key);
+  final String firstname;
   @override
   _UserHomeState createState() => _UserHomeState();
 }
@@ -31,15 +30,11 @@ class _UserHomeState extends State<UserHome> {
 
           appBar: AppBar(
             backgroundColor: HexColor('0a1931'),
-            actions: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Icon(Icons.shopping_cart_outlined),
-              ),
-            ],
             title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Center(child: titleTextstyle('ShopIt')),
+                bodyTextstyle('Welcome ${widget.firstname}!', Colors.white, 14),
               ],
             ),
           ),
