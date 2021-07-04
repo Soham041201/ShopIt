@@ -84,7 +84,12 @@ class _SellerHomeState extends State<SellerHome> {
             child: bodyTextstyle('No', Colors.blue.shade500, 20),
           ),
           TextButton(
-            onPressed: () => Navigator.of(context).pop(true),
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Login(),
+              ),
+            ),
             child: bodyTextstyle('Yes', Colors.blue.shade500, 20),
           ),
         ],
