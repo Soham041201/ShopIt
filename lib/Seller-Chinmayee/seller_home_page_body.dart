@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shop_it/Seller-Chinmayee/shop_details.dart';
 import 'package:shop_it/Style/text_field_decoration.dart';
 import 'package:shop_it/User-Saurav/login.dart';
 
@@ -39,7 +40,12 @@ class _SellerHomePageBodyState extends State<SellerHomePageBody> {
                   padding: EdgeInsets.all(5.0),
                   color: Colors.yellow,
                   disabledColor: CupertinoColors.systemYellow,
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ShopDetails()),
+                    );
+                  },
                   child: bodyTextstyle(
                     'Complete your details now',
                     Colors.blue,
