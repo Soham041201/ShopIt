@@ -31,7 +31,7 @@ class _SellerHomePageBodyState extends State<SellerHomePageBody> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              bodyTextstyle('Complete your shop details to continue',
+              bodyTextstyle('Complete your details to continue',
                   Colors.blue.shade700, 28),
               SizedBox(
                 height: 10,
