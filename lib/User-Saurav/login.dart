@@ -39,7 +39,7 @@ class _LoginUserState extends State<Login> {
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
-                        SizedBox(height: 40),
+                        SizedBox(height: 20),
                         titleTextstyle('LOGIN'),
                         SizedBox(height: 40),
                         Hero(

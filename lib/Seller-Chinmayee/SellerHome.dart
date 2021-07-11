@@ -83,12 +83,10 @@ class _SellerHomeState extends State<SellerHome> {
             child: bodyTextstyle('No', Colors.blue.shade500, 20),
           ),
           TextButton(
-            onPressed: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => Login(),
-              ),
-            ),
+            onPressed: () {
+              FirebaseAuth.instance.signOut();
+              Navigator.popUntil(context, (route) => false);
+            },
             child: bodyTextstyle('Yes', Colors.blue.shade500, 20),
           ),
         ],
