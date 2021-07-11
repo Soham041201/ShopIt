@@ -2,6 +2,7 @@
 
 // Hint: Add a floating button and in the property of onpressed find a method to add the images.abstract
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,11 @@ class SellerHome extends StatefulWidget {
   _SellerHomeState createState() => _SellerHomeState();
 }
 
+
 class _SellerHomeState extends State<SellerHome> {
+
+
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -84,8 +89,16 @@ class _SellerHomeState extends State<SellerHome> {
           ),
           TextButton(
             onPressed: () {
-              FirebaseAuth.instance.signOut();
-              Navigator.popUntil(context, (route) => false);
+              setState(() {
+                FirebaseAuth.instance.signOut();
+                GoogleSignIn().signOut();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Login(),
+                  ),
+                );
+              });
             },
             child: bodyTextstyle('Yes', Colors.blue.shade500, 20),
           ),
@@ -95,4 +108,5 @@ class _SellerHomeState extends State<SellerHome> {
 
     return shouldPop ?? false;
   }
+  
 }
