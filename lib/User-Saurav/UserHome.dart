@@ -10,6 +10,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shop_it/Style/text_field_decoration.dart';
 import 'package:shop_it/User-Saurav/login.dart';
+import 'card_product.dart';
 
 class UserHome extends StatefulWidget {
   const UserHome({Key? key, required this.firstname}) : super(key: key);
@@ -210,128 +211,8 @@ class _UserHomeState extends State<UserHome> {
                     child: ListView(
                       scrollDirection: Axis.horizontal,
                       children: [
-                        Padding(
-                          padding: EdgeInsets.all(10),
-                          child: Card(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            color: Colors.white,
-                            elevation: 5,
-                            child: Container(
-                              height: 200,
-                              width: 175,
-                              child: Column(
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.all(5),
-                                    child: Container(
-                                      height: 150,
-                                      width: 150,
-                                      child: Image.asset(
-                                          'assets/images/iphone.png'),
-                                    ),
-                                  ),
-                                  Container(
-                                    height: 45,
-                                    child: Padding(
-                                      padding: EdgeInsets.all(3),
-                                      child: Text(
-                                        'Apple iPhone 12 128 GB, Blue',
-                                        style: TextStyle(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.all(15),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          '\$999',
-                                          style: TextStyle(
-                                            fontSize: 20,
-                                            color: Colors.black,
-                                          ),
-                                        ),
-                                        Icon(
-                                          Icons.add,
-                                          color: HexColor('0a1931'),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.all(10),
-                          child: Card(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            elevation: 5,
-                            color: Colors.white,
-                            child: Container(
-                              height: 200,
-                              width: 175,
-                              child: Column(
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.all(5),
-                                    child: Container(
-                                      height: 150,
-                                      width: 150,
-                                      child: Image.asset(
-                                          'assets/images/orange.png'),
-                                    ),
-                                  ),
-                                  Container(
-                                    height: 45,
-                                    child: Padding(
-                                      padding: EdgeInsets.all(3),
-                                      child: Text(
-                                        'Nike Air Max 1 SE Just Do It - Orange Shoes - Size 9',
-                                        style: TextStyle(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.all(15),
-                                    child: Row(
-                                      children: [
-                                        Text(
-                                          '\$569',
-                                          style: TextStyle(
-                                            fontSize: 20,
-                                            color: Colors.black,
-                                          ),
-                                        ),
-                                        Container(
-                                          child: Padding(
-                                            padding:
-                                                const EdgeInsets.only(left: 70),
-                                            child: Icon(
-                                              Icons.add,
-                                              color: HexColor('0a1931'),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
+                        ProductCard('https://cdn.alzashop.com/Foto/f16/RI/RI032b2.jpg', 'Iphone 11 Pro Max 45GB RaM', 699),
+
                       ],
                     ),
                   ),
