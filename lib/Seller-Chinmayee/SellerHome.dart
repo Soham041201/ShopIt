@@ -2,7 +2,7 @@
 
 // Hint: Add a floating button and in the property of onpressed find a method to add the images.abstract
 
-import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -108,5 +108,5 @@ class _SellerHomeState extends State<SellerHome> {
 
     return shouldPop ?? false;
   }
-  
+
 }

@@ -42,8 +42,7 @@ class Wrapper extends StatelessWidget {
       }
     }
     if (GoogleSignIn().currentUser != null) {
-      return UserHome(firstname: '');
-      //modify here
+      return UserHome(firstname: GoogleSignIn().currentUser!.displayName!);
     }
     return StartPage();
   }

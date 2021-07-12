@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shop_it/Seller-Chinmayee/add_items.dart';
 import 'package:shop_it/Seller-Chinmayee/shop_details.dart';
 import 'package:shop_it/Style/text_field_decoration.dart';
 import 'package:shop_it/User-Saurav/login.dart';
@@ -20,10 +21,14 @@ class _SellerHomePageBodyState extends State<SellerHomePageBody> {
         backgroundColor: HexColor('0a1931'),
         elevation: 0.1,
         child: Icon(
-          Icons.shopping_cart,
+          Icons.add,
           color: Colors.white,
         ),
-        onPressed: () {},
+        onPressed: () {Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => AddItems()),
+                      );},
       ),
       body: Padding(
         padding: const EdgeInsets.only(left: 50, top: 10, right: 30),
@@ -31,7 +36,8 @@ class _SellerHomePageBodyState extends State<SellerHomePageBody> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              bodyTextstyle('Complete your details to continue',
+
+                            bodyTextstyle('Complete your details to continue',
                   Colors.blue.shade700, 28),
               SizedBox(
                 height: 10,
