@@ -131,9 +131,9 @@ class _ShopDetailsState extends State<ShopDetails> {
                       fontWeight: FontWeight.w300,
                       color: Colors.black),
                   validator: (val) =>
-                      val!.isEmpty ? 'Enter the type of your shop' : null,
+                      val!.isEmpty ? 'Enter the address of your shop' : null,
                   onChanged: (val) {
-                    // setState(() => firstName = val);
+                    setState(() => shopAddress= val);
                   },
                   decoration: InputDecoration(
                     prefixIcon: Icon(
@@ -172,7 +172,7 @@ class _ShopDetailsState extends State<ShopDetails> {
                   validator: (val) =>
                       val!.isEmpty ? 'Enter this field' : null,
                   onChanged: (val) {
-                    // setState(() => firstName = val);
+                    setState(() => delivery= val);
                   },
                   decoration: InputDecoration(
                     prefixIcon: Icon(
@@ -210,9 +210,11 @@ class _ShopDetailsState extends State<ShopDetails> {
                   disabledColor: CupertinoColors.systemYellow,
                   onPressed: () async {
                     if (_fromKey.currentState!.validate()) {
-                      await _firestore.collection('ShopDetails').add(
+                      
+                      await _firestore.collection('ShopDetails').
+                      add(
                         {
-                          'name': FirebaseAuth.instance.currentUser,
+                          'name': FirebaseAuth.instance.currentUser!.email,
                           'shop': shopName,
                           'shop_type': shopType,
                           'address': shopAddress,
