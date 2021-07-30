@@ -20,6 +20,9 @@ class _ShopDetailsState extends State<ShopDetails> {
   String shopAddress = '';
   String delivery = '';
   String shopType = '';
+
+  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -234,6 +237,7 @@ class _ShopDetailsState extends State<ShopDetails> {
                     15,
                   ),
                 ),
+                
               ],
             ),
           ),

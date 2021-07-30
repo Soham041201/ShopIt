@@ -5,6 +5,8 @@ import 'package:shop_it/Seller-Chinmayee/add_items.dart';
 import 'package:shop_it/Seller-Chinmayee/shop_details.dart';
 import 'package:shop_it/Style/text_field_decoration.dart';
 import 'package:shop_it/User-Saurav/login.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class SellerHomePageBody extends StatefulWidget {
   const SellerHomePageBody({Key? key}) : super(key: key);
@@ -14,6 +16,19 @@ class SellerHomePageBody extends StatefulWidget {
 }
 
 class _SellerHomePageBodyState extends State<SellerHomePageBody> {
+
+String shop_name='';
+
+  getdetails() async {
+    var collection = FirebaseFirestore.instance.collection('ShopDetails');
+  var querySnapshot = await collection.get();
+  for (var queryDocumentSnapshot in querySnapshot.docs) {
+  Map<String, dynamic> data = queryDocumentSnapshot.data();
+  shop_name = data['shop'];
+  }
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,7 +71,7 @@ class _SellerHomePageBodyState extends State<SellerHomePageBody> {
                     );
                   },
                   child: bodyTextstyle(
-                    'Complete your details now',
+                    'Complete your details now!',
                     Colors.blue,
                     15,
                   )),

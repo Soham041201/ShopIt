@@ -121,6 +121,7 @@ class _LoginUserState extends State<Login> {
                                           .get()
                                           .then((querySnapshot) {
                                         querySnapshot.docs.forEach((element) {
+                                          
                                           if (element['type'] == 'Buyer') {
                                             Navigator.push(
                                               context,
