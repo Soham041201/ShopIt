@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shop_it/Seller-Chinmayee/products.dart';
 import 'package:shop_it/Seller-Chinmayee/seller_home_page_body.dart';
 import 'package:shop_it/Style/text_field_decoration.dart';
 import 'package:shop_it/User-Saurav/login.dart';
@@ -227,7 +228,7 @@ class _ShopDetailsState extends State<ShopDetails> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => SellerHomePageBody()),
+                            builder: (context) => Products()),
                       );
                     }
                   },

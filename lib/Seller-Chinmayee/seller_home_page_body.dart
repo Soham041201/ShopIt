@@ -16,18 +16,7 @@ class SellerHomePageBody extends StatefulWidget {
 }
 
 class _SellerHomePageBodyState extends State<SellerHomePageBody> {
-
-String shop_name='';
-
-  getdetails() async {
-    var collection = FirebaseFirestore.instance.collection('ShopDetails');
-  var querySnapshot = await collection.get();
-  for (var queryDocumentSnapshot in querySnapshot.docs) {
-  Map<String, dynamic> data = queryDocumentSnapshot.data();
-  shop_name = data['shop'];
-  }
-  }
-
+  String shop_name = '';
 
   @override
   Widget build(BuildContext context) {
@@ -40,22 +29,21 @@ String shop_name='';
           Icons.add,
           color: Colors.white,
         ),
-        onPressed: () {Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => AddItems()),
-                      );},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => AddItems()),
+          );
+        },
       ),
-      
       body: Padding(
-            
         padding: const EdgeInsets.only(left: 50, top: 10, right: 30),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-
-                            bodyTextstyle('Complete your details to continue',
+      
+              bodyTextstyle('Complete your details to continue',
                   Colors.blue.shade700, 28),
               SizedBox(
                 height: 10,
@@ -75,16 +63,16 @@ String shop_name='';
                     Colors.blue,
                     15,
                   )),
-
-                  Text(''),
+              Text(''),
             ],
           ),
         ),
       ),
     );
   }
-    dialogBox() {
-     showDialog(
+
+  dialogBox() {
+    showDialog(
       context: context,
       builder: (context) => AlertDialog(
         titleTextStyle: GoogleFonts.montserrat(fontSize: 15),
@@ -113,4 +101,6 @@ String shop_name='';
       ),
     );
   }
+
+  
 }
