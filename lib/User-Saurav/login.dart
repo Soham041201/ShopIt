@@ -23,6 +23,7 @@ class _LoginUserState extends State<Login> {
   String password = '';
   String error = '';
   String eror = '';
+  String er = '';
   final _auth = FirebaseAuth.instance;
   final _fromKey = GlobalKey<FormState>();
   @override
@@ -56,6 +57,10 @@ class _LoginUserState extends State<Login> {
                         ),
                         Text(
                           eror,
+                          style: TextStyle(color: Colors.red),
+                        ),
+                        Text(
+                          er,
                           style: TextStyle(color: Colors.red),
                         ),
                         SizedBox(
@@ -140,7 +145,9 @@ class _LoginUserState extends State<Login> {
                                         });
                                       });
                                     } catch (e) {
+                                      loading = false;
                                       print(e.toString());
+                                      er = e.toString();
                                       return null;
                                     }
                                   }
