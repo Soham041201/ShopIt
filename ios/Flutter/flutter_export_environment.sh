@@ -1,7 +1,7 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=/home/soham/snap/flutter/common/flutter"
-export "FLUTTER_APPLICATION_PATH=/media/soham/New Volume/flutter_projects/ShopIt"
+export "FLUTTER_ROOT=/home/suyog/snap/flutter/common/flutter"
+export "FLUTTER_APPLICATION_PATH=/media/suyog/Suyog-Ubantu1/Projects/flutter/ShopIt"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
 export "FLUTTER_TARGET=lib/main.dart"
 export "FLUTTER_BUILD_DIR=build"

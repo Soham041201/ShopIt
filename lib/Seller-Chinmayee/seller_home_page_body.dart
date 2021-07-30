@@ -60,6 +60,8 @@ class _SellerHomePageBodyState extends State<SellerHomePageBody> {
                     Colors.blue,
                     15,
                   )),
+
+                  Text(''),
             ],
           ),
         ),
