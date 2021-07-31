@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shop_it/Seller-Chinmayee/SellerHome.dart';
+import 'package:shop_it/Seller-Chinmayee/products.dart';
 import 'package:shop_it/Seller-Chinmayee/seller_home_page_body.dart';
 import 'package:shop_it/Style/text_field_decoration.dart';
 
@@ -174,7 +176,7 @@ class _AddItemsState extends State<AddItems> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => SellerHomePageBody()),
+                              builder: (context) => SellerHome(firstName:'')),
                         );
                       }
                     },

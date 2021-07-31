@@ -1,16 +1,15 @@
-// Create a home page for the user where he will be able to add the list of items which will be available to the seller
-
-// Hint: Add a floating button and in the property of onpressed find a method to add the images.abstract
-
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:shop_it/Seller-Chinmayee/products.dart';
 import 'package:shop_it/Seller-Chinmayee/seller_home_page_body.dart';
+import 'package:shop_it/Seller-Chinmayee/shop_details.dart';
 import 'package:shop_it/Style/text_field_decoration.dart';
 import 'package:shop_it/User-Saurav/login.dart';
+
+import 'add_items.dart';
 
 class SellerHome extends StatefulWidget {
   const SellerHome({Key? key, required this.firstName}) : super(key: key);
@@ -41,9 +40,23 @@ class _SellerHomeState extends State<SellerHome> {
             ],
           ),
         ),
+        floatingActionButton: FloatingActionButton(
+        backgroundColor: HexColor('0a1931'),
+        elevation: 0.1,
+        child: Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => AddItems()),
+          );
+        },
+      ),
         drawer: Drawer(
           child: ListView(
-            padding: EdgeInsets.zero,
+            padding: EdgeInsets.all(5),
             children: [
               DrawerHeader(
                 child: titleTextstyle('Contents'),
@@ -51,7 +64,8 @@ class _SellerHomeState extends State<SellerHome> {
                 decoration: BoxDecoration(color: HexColor('0a1931')),
               ),
               ListTile(
-                leading: Icon(Icons.logout),
+                tileColor: Colors.blueAccent,
+                leading: Icon(Icons.logout,color: Colors.white,),
                 title: bodyTextstyle('Logout', Colors.white, 20),
                 onTap: () {
                   setState(() {
@@ -66,10 +80,42 @@ class _SellerHomeState extends State<SellerHome> {
                   });
                 },
               ),
+              SizedBox(height: 5,),
+            ListTile(
+              tileColor: Colors.blueAccent,
+                leading: Icon(Icons.app_registration,color: Colors.white),
+                title: bodyTextstyle('Complete your registration', Colors.white, 20),
+                onTap: () {
+                  setState(() {
+                   Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ShopDetails()),
+                    );
+                     
+                  });
+                },
+              ), 
+              SizedBox(height: 5,),
+               ListTile(
+              
+              tileColor: Colors.blueAccent,
+                leading: Icon(Icons.contact_phone,color: Colors.white),
+                title: bodyTextstyle('Contact Us', Colors.white, 20),
+                onTap: () {
+                  setState(() {
+                   Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ShopDetails()),
+                    );
+                     
+                  });
+                },
+              ),   
             ],
           ),
         ),
-        body: SellerHomePageBody(),
+        // body: Products(),
+        body: Products(),
       ),
     );
   }

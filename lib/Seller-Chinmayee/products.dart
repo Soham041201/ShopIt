@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shop_it/User-Saurav/card_product.dart';
 
 class Products extends StatefulWidget {
   const Products({Key? key}) : super(key: key);
@@ -10,31 +11,33 @@ class Products extends StatefulWidget {
 }
 
 class _ProductsState extends State<Products> {
-  String shopName = '';
-  Future getdetails() async {
-    await FirebaseFirestore.instance
-        .collection('ShopDetails')
-        .get()
-        .then((querySnapshot) {
-      querySnapshot.docs.forEach((element) {
-        shopName = element['shop'];
-      });
-    });
-  }
+
+
 
   @override
   Widget build(BuildContext context) {
-    getdetails();
+
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            CupertinoButton(child: Text('Refresh'), onPressed: getdetails),
-            Text(shopName),
-          ],
-        ),
-      ),
+      backgroundColor: Colors.blue[300],
+      body: StreamBuilder<QuerySnapshot>(
+          stream: FirebaseFirestore.instance
+              .collection('Products')
+              .snapshots(),
+          builder: (context, snapshot) {
+            if (!snapshot.hasData) {
+              return CircularProgressIndicator();
+            }
+            return SizedBox(
+              height: 300,
+              child: ListView.builder(
+           
+                  scrollDirection: Axis.horizontal,
+                  itemCount: snapshot.data!.docs.length,
+                  itemBuilder: (context, index) {
+                    return ProductCard(snapshot.data!.docs[index]['imagelink'],snapshot.data!.docs[index]['productName'],snapshot.data!.docs[index]['productCost']);
+                  }),
+            );
+          }),
     );
   }
 }

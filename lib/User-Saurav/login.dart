@@ -189,7 +189,7 @@ class _LoginUserState extends State<Login> {
                                     await _googleSignIn.signIn();
                                 GoogleSignInAuthentication googleAuth =
                                     await googleUser!.authentication;
-                                // final User user = _auth.
+                                    //final User user = _auth.
                                 loading = false;
                                 if (googleAuth.idToken != null) {
                                   setState(() {

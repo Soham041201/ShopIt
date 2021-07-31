@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shop_it/Style/text_field_decoration.dart';
 
 
 
@@ -10,7 +11,7 @@ class ProductCard extends StatelessWidget{
   var product_pricing;
   var product_name;
 
-  ProductCard(String link, String name, int price){
+  ProductCard(String link, String name, String price){
 
     this.image_link = link;
     this.product_name = name;
@@ -27,11 +28,11 @@ class ProductCard extends StatelessWidget{
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20),
                             ),
-                            color: Colors.white,
+                            color: Colors.amber[50],
                             elevation: 5,
                             child: Container(
                               height: 200,
-                              width: 175,
+                              width: 200,
                               child: Column(
                                 children: [
                                   Padding(
@@ -39,18 +40,14 @@ class ProductCard extends StatelessWidget{
                                     child: Container(
                                       height: 150,
                                       width: 150,
-                                      child: Image.network(image_link),
+                                      child: Image(image: NetworkImage(image_link)),
                                     ),
                                   ),
                                   Container(
                                     height: 45,
                                     child: Padding(
                                       padding: EdgeInsets.all(3),
-                                      child: Text(product_name,
-                                        style: TextStyle(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.bold),
-                                      ),
+                                      child: bodyTextstyle(product_name, Colors.black, 18)
                                     ),
                                   ),
                                   Padding(
@@ -59,8 +56,9 @@ class ProductCard extends StatelessWidget{
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
+      
                                         Text(
-                                          '\$'+product_pricing,
+                                          '\₹'+product_pricing,
                                           style: TextStyle(
                                             fontSize: 20,
                                             color: Colors.black,

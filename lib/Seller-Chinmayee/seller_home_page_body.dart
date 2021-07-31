@@ -5,8 +5,7 @@ import 'package:shop_it/Seller-Chinmayee/add_items.dart';
 import 'package:shop_it/Seller-Chinmayee/shop_details.dart';
 import 'package:shop_it/Style/text_field_decoration.dart';
 import 'package:shop_it/User-Saurav/login.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+
 
 class SellerHomePageBody extends StatefulWidget {
   const SellerHomePageBody({Key? key}) : super(key: key);
