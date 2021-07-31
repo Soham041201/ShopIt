@@ -3,8 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_it/Seller-Chinmayee/SellerHome.dart';
-import 'package:shop_it/Seller-Chinmayee/products.dart';
-import 'package:shop_it/Seller-Chinmayee/seller_home_page_body.dart';
 import 'package:shop_it/Style/text_field_decoration.dart';
 
 class AddItems extends StatefulWidget {
@@ -23,16 +21,19 @@ class _AddItemsState extends State<AddItems> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.blue[50],
       body: Center(
+        
         child: SafeArea(
           child: Form(
             key: _fromKey,
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 bodyTextstyle('Add your products', Colors.blue, 24),
+                SizedBox(height: 10,),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding:  EdgeInsets.symmetric(horizontal:30.0 ),
                   child: TextFormField(
                     textAlign: TextAlign.center,
                     style: TextStyle(
@@ -73,7 +74,7 @@ class _AddItemsState extends State<AddItems> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding:  EdgeInsets.symmetric(horizontal:30.0, vertical: 10 ),
                   child: TextFormField(
                     keyboardType: TextInputType.number,
                     textAlign: TextAlign.center,
@@ -116,7 +117,7 @@ class _AddItemsState extends State<AddItems> {
           
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding:  EdgeInsets.only(bottom:10,left: 30,right: 30 ),
                   child: TextFormField(
                     keyboardType: TextInputType.text,
                     textAlign: TextAlign.center,
