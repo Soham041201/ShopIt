@@ -47,14 +47,35 @@ class _UserHomeState extends State<UserHome> {
 
           drawer: Drawer(
             child: ListView(
-              padding: EdgeInsets.zero,
+              padding: EdgeInsets.all(5),
+              
               children: [
                 DrawerHeader(
                   child: titleTextstyle('Contents'),
                   padding: EdgeInsets.fromLTRB(15, 120, 0, 0),
                   decoration: BoxDecoration(color: HexColor('0a1931')),
                 ),
+               
                 ListTile(
+                  leading: Icon(Icons.home),
+                    tileColor: Colors.blueAccent,
+                  title: bodyTextstyle('Home', Colors.white, 20),
+                  onTap: () {
+                    setState(() {
+                      FirebaseAuth.instance.signOut();
+                      GoogleSignIn().signOut();
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => UserHome(firstname: ''),
+                        ),
+                      );
+                    });
+                  },
+                ),
+                SizedBox(height: 5,),
+                 ListTile(
+                     tileColor: Colors.blueAccent,
                   leading: Icon(Icons.logout),
                   title: bodyTextstyle('Logout', Colors.white, 20),
                   onTap: () {
@@ -65,6 +86,25 @@ class _UserHomeState extends State<UserHome> {
                         context,
                         MaterialPageRoute(
                           builder: (context) => Login(),
+                        ),
+                      );
+                    });
+                  },
+                ),
+                SizedBox(height: 5,),
+                ListTile(
+                    tileColor: Colors.blueAccent,
+                    
+                  leading: Icon(Icons.contact_phone),
+                  title: bodyTextstyle('Contact Us', Colors.white, 20),
+                  onTap: () {
+                    setState(() {
+                      FirebaseAuth.instance.signOut();
+                      GoogleSignIn().signOut();
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => UserHome(firstname: ''),
                         ),
                       );
                     });
