@@ -3,9 +3,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:shop_it/Seller-Chinmayee/SellerHome.dart';
 import 'home/home.dart';
-import 'Seller-Chinmayee/SellerHome.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -40,7 +38,7 @@ class MyApp extends StatelessWidget {
             scaffoldBackgroundColor: Colors.black,
             // Use any font you want to use just add the same here to make it default.
             ),
-        home: SellerHome(firstName:'Suyog Savalkar'));
+        home: Home());
   }
 }
 //How to add the fonts

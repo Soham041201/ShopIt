@@ -8,6 +8,7 @@ import 'package:shop_it/Seller-Chinmayee/seller_home_page_body.dart';
 import 'package:shop_it/Seller-Chinmayee/shop_details.dart';
 import 'package:shop_it/Style/text_field_decoration.dart';
 import 'package:shop_it/User-Saurav/login.dart';
+import 'package:shop_it/contact_us.dart';
 
 import 'add_items.dart';
 
@@ -105,7 +106,7 @@ class _SellerHomeState extends State<SellerHome> {
                   setState(() {
                    Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => ShopDetails()),
+                      MaterialPageRoute(builder: (context) => ContactUs()),
                     );
                      
                   });

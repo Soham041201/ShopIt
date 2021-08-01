@@ -11,6 +11,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shop_it/Style/text_field_decoration.dart';
 import 'package:shop_it/User-Saurav/login.dart';
+import 'package:shop_it/contact_us.dart';
 import 'card_product.dart';
 
 class UserHome extends StatefulWidget {
@@ -104,7 +105,7 @@ class _UserHomeState extends State<UserHome> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => UserHome(firstname: ''),
+                          builder: (context) => ContactUs(),
                         ),
                       );
                     });
