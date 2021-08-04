@@ -58,9 +58,10 @@ class _UserHomeState extends State<UserHome> {
                 ),
                
                 ListTile(
+                  
                   leading: Icon(Icons.home),
                     tileColor: Colors.blueAccent,
-                  title: bodyTextstyle('Home', Colors.white, 20),
+                  title: SizedBox(child: bodyTextstyle('Home', Colors.white, 20),width: 20,),
                   onTap: () {
                     setState(() {
                       FirebaseAuth.instance.signOut();

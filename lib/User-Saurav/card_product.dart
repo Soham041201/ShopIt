@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:shop_it/Style/text_field_decoration.dart';
 
 
-
-
-
 class ProductCard extends StatelessWidget{
 
   var image_link;

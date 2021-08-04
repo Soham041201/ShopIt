@@ -66,7 +66,7 @@ class _SellerHomeState extends State<SellerHome> {
               ),
               ListTile(
                 tileColor: Colors.blueAccent,
-                leading: Icon(Icons.logout,color: Colors.white,),
+                leading: Icon(Icons.logout,color: Colors.white),
                 title: bodyTextstyle('Logout', Colors.white, 20),
                 onTap: () {
                   setState(() {

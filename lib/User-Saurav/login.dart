@@ -117,15 +117,15 @@ class _LoginUserState extends State<Login> {
                                     dynamic result =
                                         await _auth.signInWithEmailAndPassword(
                                             email: email, password: password);
-
+                                    dynamic user = _auth.currentUser;
                                     if (result != null) {
                                       try {
+                                          
                                         await FirebaseFirestore.instance
-                                            .collection('Users')
+                                            .collection('Users').doc(user.uid)
                                             .get()
-                                            .then((querySnapshot) {
-                                          querySnapshot.docs.forEach((element) {
-                                            if (element['type'] == 'Buyer') {
+                                            .then((element) {
+                                            if (element.data()!['type'] == 'Buyer') {
                                               Navigator.push(
                                                 context,
                                                 MaterialPageRoute(
@@ -135,7 +135,7 @@ class _LoginUserState extends State<Login> {
                                                   ),
                                                 ),
                                               );
-                                            } else if (element['type'] ==
+                                            } else if (element.data()!['type'] ==
                                                 'Seller') {
                                               Navigator.push(
                                                 context,
@@ -148,7 +148,7 @@ class _LoginUserState extends State<Login> {
                                               );
                                             }
                                           });
-                                        });
+                                    
                                       } catch (e) {
                                         loading = false;
                                         print(e.toString());
@@ -258,6 +258,23 @@ class _LoginUserState extends State<Login> {
     );
   }
 
+  // Future<String> role() async {
+  //   FirebaseAuth _auth = FirebaseAuth.instance;
+    // FirebaseUser user = await _auth.currentUser!();
+  //   DocumentSnapshot snapshot =
+  //       await Firestore.instance.collection("Users").document(user.uid).get();
+  //   setState(() {
+  //     roles = snapshot.data['Role'].toString();
+  //   });
+  //   String role = snapshot.data['Role'].toString();
+  //   if (role == "receptionist") {
+  //     useridclinic = snapshot.data['uid society'].toString();
+  //   } else {
+  //     useridclinic = snapshot.data['Uid'].toString();
+  //   }
+  //   return role;
+  // }
+
   Future<bool> onWillPop() async {
     final shouldPop = await showDialog(
       context: context,
@@ -290,7 +307,7 @@ class _LoginUserState extends State<Login> {
       ),
     );
 
-    return shouldPop ?? false;
+    return shouldPop ?? true;
   }
 }
 
