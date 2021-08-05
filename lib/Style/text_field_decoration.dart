@@ -20,7 +20,7 @@ InputDecoration textFieldDecoration(String hintText, IconData icon) {
       borderRadius: BorderRadius.all(Radius.circular(32.0)),
     ),
     focusedBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: Colors.purple, width: 2.0),
+      borderSide: BorderSide(color: Colors.blue.shade200, width: 2.0),
       borderRadius: BorderRadius.all(Radius.circular(32.0)),
     ),
   );

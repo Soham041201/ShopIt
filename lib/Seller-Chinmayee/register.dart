@@ -31,14 +31,14 @@ class _RegisterSellerState extends State<Register>
       style: GoogleFonts.montserrat(
           fontSize: 20,
           fontWeight: FontWeight.normal,
-          color: Colors.blue.shade700),
+          color: Colors.blue.shade200),
     ),
     'Seller': Text(
       "Seller",
       style: GoogleFonts.montserrat(
           fontSize: 20,
           fontWeight: FontWeight.normal,
-          color: Colors.blue.shade700),
+          color: Colors.blue.shade200),
     ),
   };
   bool loading = false;
@@ -62,7 +62,7 @@ class _RegisterSellerState extends State<Register>
     return Center(
       child: Text(
         "Text: $yourText",
-        style: TextStyle(color: Colors.blue, fontSize: 20.0),
+        style: TextStyle(color: Colors.blue.shade200, fontSize: 20.0),
       ),
     );
   }
@@ -77,7 +77,7 @@ class _RegisterSellerState extends State<Register>
       home: loading
           ? Loading()
           : Scaffold(
-              backgroundColor: HexColor('0a1931'),
+                  backgroundColor: Colors.deepPurpleAccent,
               body: SingleChildScrollView(
                 child: Container(
                   padding: EdgeInsets.all(20),
@@ -338,7 +338,7 @@ class _RegisterSellerState extends State<Register>
                               );
                             },
                             child: bodyTextstyle(
-                                'Login', Colors.blue.shade700, 18))
+                                'Login', Colors.blue.shade200, 18))
                       ],
                     ),
                   ),

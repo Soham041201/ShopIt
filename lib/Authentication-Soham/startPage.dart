@@ -10,7 +10,8 @@ class StartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: HexColor('0a1931'),
+      // backgroundColor: Colors.purple[400],
+       backgroundColor:Colors.deepPurpleAccent,
       body: Center(
         child: Column(
           children: [

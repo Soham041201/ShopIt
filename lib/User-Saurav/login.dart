@@ -35,7 +35,8 @@ class _LoginUserState extends State<Login> {
           : WillPopScope(
               onWillPop: onWillPop,
               child: Scaffold(
-                backgroundColor: HexColor('0a1931'),
+                backgroundColor: Colors.deepPurpleAccent,
+                // backgroundColor: HexColor('0a1931'),
                 body: Container(
                   padding: EdgeInsets.all(20),
                   child: Form(
@@ -45,7 +46,7 @@ class _LoginUserState extends State<Login> {
                         children: [
                           SizedBox(height: 20),
                           titleTextstyle('LOGIN'),
-                          SizedBox(height: 40),
+                          SizedBox(height: 25),
                           Hero(
                             tag: 'Logo',
                             child: Icon(
@@ -56,7 +57,7 @@ class _LoginUserState extends State<Login> {
                           ),
                           Text(
                             error,
-                            style: TextStyle(color: Colors.red),
+                            style: TextStyle(color: Colors.red[100]),
                           ),
                           Text(
                             eror,
@@ -238,7 +239,7 @@ class _LoginUserState extends State<Login> {
                           GestureDetector(
                             child: bodyTextstyle(
                               'Register Now!',
-                              Colors.blue,
+                              Colors.blue.shade200,
                               15,
                             ),
                             onTap: () => Navigator.push(

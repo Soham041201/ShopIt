@@ -30,8 +30,10 @@ class _SellerHomeState extends State<SellerHome> {
     return WillPopScope(
       onWillPop: onWillPop,
       child: Scaffold(
+          backgroundColor: Colors.purple[50],
         appBar: AppBar(
-          backgroundColor: HexColor('0a1931'),
+                 backgroundColor: Colors.deepPurpleAccent,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(bottomLeft: Radius.circular(90),bottomRight: Radius.circular(30),topLeft:Radius.circular(30) )),
           actions: [],
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
