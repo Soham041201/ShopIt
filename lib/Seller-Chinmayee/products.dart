@@ -18,7 +18,8 @@ class _ProductsState extends State<Products> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      backgroundColor: Colors.blue[300],
+      backgroundColor: Colors.purple[50],
+
       body: StreamBuilder<QuerySnapshot>(
           stream: FirebaseFirestore.instance
               .collection('Products')
