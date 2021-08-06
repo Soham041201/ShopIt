@@ -25,7 +25,7 @@ class ProductCard extends StatelessWidget{
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20),
                             ),
-                            color: Colors.amber[50],
+                            color: Colors.white,
                             elevation: 5,
                             child: Container(
                               height: 200,
