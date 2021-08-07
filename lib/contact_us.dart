@@ -131,8 +131,39 @@ class _ContactUsState extends State<ContactUs> {
           ),
 
     
-      backgroundColor: Colors.white,
-      body: Center(child: bodyTextstyle('Contact Us Page',Colors.blue,28)),
+      backgroundColor: Colors.purple[50],
+      body: Center(
+        child: Column(
+          children: [
+            Container(
+              height: 350,
+              width: 350,
+              child: Image.asset('assets/images/support.png'),
+            ),
+            SizedBox(height: 5,),
+          Padding(
+            padding: EdgeInsets.only(left: 30, right: 30),
+            child: Text('We are committed to giving our users and sellers the best experience! Stuck or want help in the workflow? We are ready to help, Contact Us today!', style: TextStyle(color: Colors.black, fontSize: 15),),
+          ),
+           SizedBox(height: 5,),
+          Padding(
+            padding: EdgeInsets.only(top: 10, right: 20, left: 20),
+            child: Container(
+              height: 100,
+              child: Card(
+                color:Colors.white,
+                elevation: 5,
+                child: Row(children: [
+                  Container(
+                    height: 100,
+                    child: Icon(Icons.contact_mail, color: Colors.deepPurpleAccent,))
+                ],),
+              ),
+            ),
+          ),
+          ],
+        ),
+      ),
     );
   }
 }
