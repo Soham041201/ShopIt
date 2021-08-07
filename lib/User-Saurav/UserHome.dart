@@ -1,7 +1,3 @@
-// Create a home page for the user where he will be able to see the list of items added by seller.
-
-// Hint: Use List view widget to show the list
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -43,6 +39,7 @@ class _UserHomeState extends State<UserHome> {
               children: [
                 Center(child: titleTextstyle('ShopIt')),
                 bodyTextstyle('Welcome, ${widget.firstname}', Colors.white, 10),
+                //Fetch name from firestore
               ],
             ),
           ),
@@ -118,8 +115,6 @@ class _UserHomeState extends State<UserHome> {
                       title: bodyTextstyle('Contact Us', Colors.white, 20),
                       onTap: () {
                         setState(() {
-                          FirebaseAuth.instance.signOut();
-                          GoogleSignIn().signOut();
                           Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -155,7 +150,7 @@ class _UserHomeState extends State<UserHome> {
                   Padding(
                       padding: EdgeInsets.all(10),
                       child:
-                          bodyTextstyle('Popular Choices', Colors.black, 28)),
+                          bodyTextstyle('Popular Choices', Colors.purple, 20)),
                   Container(
                     height: 300,
                     child: ListView(
@@ -241,7 +236,7 @@ class _UserHomeState extends State<UserHome> {
                       ],
                     ),
                   ),
-                bodyTextstyle('Recently Added',Colors.purple, 26),
+                bodyTextstyle('Recently Added',Colors.purple, 20),
                   StreamBuilder<QuerySnapshot>(
           stream: FirebaseFirestore.instance
               .collection('Products')
@@ -278,6 +273,8 @@ class _UserHomeState extends State<UserHome> {
     final shouldPop = await showDialog(
       context: context,
       builder: (context) => AlertDialog(
+        backgroundColor: Colors.deepPurpleAccent,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(bottomLeft: Radius.circular(90),bottomRight: Radius.circular(30),topLeft:Radius.circular(30) )),
         titleTextStyle: GoogleFonts.montserrat(fontSize: 15),
         title: Text('Are you sure?'),
         contentTextStyle: GoogleFonts.montserrat(fontSize: 20),
@@ -285,16 +282,27 @@ class _UserHomeState extends State<UserHome> {
         actions: <Widget>[
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),
-            child: bodyTextstyle('No', Colors.blue.shade500, 20),
+            child: bodyTextstyle('No', Colors.white, 20),
           ),
           TextButton(
-            onPressed: () => Navigator.of(context).pop(true),
-            child: bodyTextstyle('Yes', Colors.blue.shade500, 20),
+            onPressed: (){
+                        setState(() {
+                          FirebaseAuth.instance.signOut();
+                          GoogleSignIn().signOut();
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Login(),
+                            ),
+                          );
+                        });
+                      },
+            child: bodyTextstyle('Yes', Colors.white, 20),
           ),
         ],
       ),
     );
 
-    return shouldPop ?? false;
+    return shouldPop ?? true;
   }
 }

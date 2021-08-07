@@ -36,7 +36,7 @@ class _ContactUsState extends State<ContactUs> {
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                
+                titleTextstyle('Contact Us')
               ],
             ),
           ),
