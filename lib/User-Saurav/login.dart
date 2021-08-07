@@ -275,11 +275,12 @@ class _LoginUserState extends State<Login> {
   //   }
   //   return role;
   // }
-
-  Future<bool> onWillPop() async {
+ Future<bool> onWillPop() async {
     final shouldPop = await showDialog(
       context: context,
       builder: (context) => AlertDialog(
+        backgroundColor: Colors.deepPurpleAccent,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(bottomLeft: Radius.circular(90),bottomRight: Radius.circular(30),topLeft:Radius.circular(30) )),
         titleTextStyle: GoogleFonts.montserrat(fontSize: 15),
         title: Text('Are you sure?'),
         contentTextStyle: GoogleFonts.montserrat(fontSize: 20),
@@ -287,22 +288,22 @@ class _LoginUserState extends State<Login> {
         actions: <Widget>[
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),
-            child: bodyTextstyle('No', Colors.blue.shade500, 20),
+            child: bodyTextstyle('No', Colors.white, 20),
           ),
           TextButton(
-            onPressed: () {
-              setState(() {
-                FirebaseAuth.instance.signOut();
-                GoogleSignIn().signOut();
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Login(),
-                  ),
-                );
-              });
-            },
-            child: bodyTextstyle('Yes', Colors.blue.shade500, 20),
+            onPressed: (){
+                        setState(() {
+                          FirebaseAuth.instance.signOut();
+                          GoogleSignIn().signOut();
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Login(),
+                            ),
+                          );
+                        });
+                      },
+            child: bodyTextstyle('Yes', Colors.white, 20),
           ),
         ],
       ),
@@ -310,6 +311,7 @@ class _LoginUserState extends State<Login> {
 
     return shouldPop ?? true;
   }
+ 
 }
 
 class HexColor extends Color {

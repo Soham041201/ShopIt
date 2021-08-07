@@ -58,63 +58,79 @@ class _SellerHomeState extends State<SellerHome> {
         },
       ),
         drawer: Drawer(
-          child: ListView(
-            padding: EdgeInsets.all(5),
-            children: [
-              DrawerHeader(
-                child: titleTextstyle('Contents'),
-                padding: EdgeInsets.fromLTRB(15, 120, 0, 0),
-                decoration: BoxDecoration(color: HexColor('0a1931')),
-              ),
-              ListTile(
-                tileColor: Colors.blueAccent,
-                leading: Icon(Icons.logout,color: Colors.white),
-                title: bodyTextstyle('Logout', Colors.white, 20),
-                onTap: () {
-                  setState(() {
-                    FirebaseAuth.instance.signOut();
-                    GoogleSignIn().signOut();
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Login(),
-                      ),
-                    );
-                  });
-                },
-              ),
-              SizedBox(height: 5,),
-            ListTile(
-              tileColor: Colors.blueAccent,
-                leading: Icon(Icons.app_registration,color: Colors.white),
-                title: bodyTextstyle('Complete your registration', Colors.white, 20),
-                onTap: () {
-                  setState(() {
-                   Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => ShopDetails()),
-                    );
-                     
-                  });
-                },
+          
+          child: Container(
+            color: Colors.deepPurpleAccent,
+            child: ListView(
+             padding: EdgeInsets.only(left: 0,right: 10),
+              children: [
+                DrawerHeader(
+                   decoration: BoxDecoration(color: Colors.deepPurpleAccent),
+                  child: titleTextstyle('Contents'),
+                  padding: EdgeInsets.fromLTRB(15, 120, 0, 0),
+                 
+                ),
+                Container(
+                   margin: EdgeInsets.only(left: 10,top: 100),
+                      decoration: BoxDecoration(color: Colors.purple[50]!.withOpacity(0.2),borderRadius: BorderRadius.all(Radius.circular(50))),
+                    
+                  child: ListTile(
+                    tileColor: Colors.deepPurpleAccent,
+                    leading: Icon(Icons.logout,color: Colors.white),
+                    title: bodyTextstyle('Logout', Colors.white, 20),
+                    onTap: () {
+                      setState(() {
+                        FirebaseAuth.instance.signOut();
+                        GoogleSignIn().signOut();
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Login(),
+                          ),
+                        );
+                      });
+                    },
+                  ),
+                ),
+                SizedBox(height: 5,),
+              Container(
+                margin: EdgeInsets.only(left: 10),
+                child: ListTile(
+                  tileColor: Colors.blueAccent,
+                    leading: Icon(Icons.app_registration,color: Colors.white),
+                    title: bodyTextstyle('Complete your registration', Colors.white, 20),
+                    onTap: () {
+                      setState(() {
+                       Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => ShopDetails()),
+                        );
+                         
+                      });
+                    },
+                  ),
               ), 
-              SizedBox(height: 5,),
-               ListTile(
-              
-              tileColor: Colors.blueAccent,
-                leading: Icon(Icons.contact_phone,color: Colors.white),
-                title: bodyTextstyle('Contact Us', Colors.white, 20),
-                onTap: () {
-                  setState(() {
-                   Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => ContactUs()),
-                    );
-                     
-                  });
-                },
-              ),   
-            ],
+                SizedBox(height: 5,),
+                 Container(
+                   margin: EdgeInsets.only(left: 10),
+                   child: ListTile(
+                
+                tileColor: Colors.blueAccent,
+                    leading: Icon(Icons.contact_phone,color: Colors.white),
+                    title: bodyTextstyle('Contact Us', Colors.white, 20),
+                    onTap: () {
+                      setState(() {
+                       Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => ContactUs()),
+                        );
+                         
+                      });
+                    },
+                ),
+                 ),   
+              ],
+            ),
           ),
         ),
         // body: Products(),
@@ -127,6 +143,8 @@ class _SellerHomeState extends State<SellerHome> {
     final shouldPop = await showDialog(
       context: context,
       builder: (context) => AlertDialog(
+        backgroundColor: Colors.deepPurpleAccent,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(bottomLeft: Radius.circular(90),bottomRight: Radius.circular(30),topLeft:Radius.circular(30) )),
         titleTextStyle: GoogleFonts.montserrat(fontSize: 15),
         title: Text('Are you sure?'),
         contentTextStyle: GoogleFonts.montserrat(fontSize: 20),
@@ -134,7 +152,7 @@ class _SellerHomeState extends State<SellerHome> {
         actions: <Widget>[
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),
-            child: bodyTextstyle('No', Colors.blue.shade500, 20),
+            child: bodyTextstyle('No', Colors.white, 20),
           ),
           TextButton(
             onPressed: () {
@@ -149,7 +167,7 @@ class _SellerHomeState extends State<SellerHome> {
                 );
               });
             },
-            child: bodyTextstyle('Yes', Colors.blue.shade500, 20),
+            child: bodyTextstyle('Yes', Colors.white, 20),
           ),
         ],
       ),
