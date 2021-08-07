@@ -156,11 +156,45 @@ class _ContactUsState extends State<ContactUs> {
                 child: Row(children: [
                   Container(
                     height: 100,
-                    child: Icon(Icons.contact_mail, color: Colors.deepPurpleAccent,))
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Icon(Icons.contact_mail, color: Colors.deepPurpleAccent,),
+                    ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Text('Email us: contact@shopit.com', style: TextStyle(color: Colors.black, fontSize: 15),),
+                    )
                 ],),
               ),
             ),
           ),
+
+           SizedBox(height: 5,),
+          Padding(
+            padding: EdgeInsets.only(top: 10, right: 20, left: 20),
+            child: Container(
+              height: 100,
+              child: Card(
+                color:Colors.white,
+                elevation: 5,
+                child: Row(children: [
+                  Container(
+                    height: 100,
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Icon(Icons.phone, color: Colors.deepPurpleAccent,),
+                    ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Text('Call Us: +91 0123456789', style: TextStyle(color: Colors.black, fontSize: 15),),
+                    )
+                ],),
+              ),
+            ),
+            ),
+
           ],
         ),
       ),
